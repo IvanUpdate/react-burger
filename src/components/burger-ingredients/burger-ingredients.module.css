@@ -1,0 +1,39 @@
+.main {
+    width: 600px;
+    height: 912px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.title {
+    font-family: 'Jet Brains mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.title2 {
+    font-family: 'Jet Brains mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.main::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #8585AD;
+}
+.main::-webkit-scrollbar {
+	width: 8px;
+}
+
+.main::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
