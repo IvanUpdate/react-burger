@@ -1,8 +1,12 @@
 .main {
     width: 600px;
-    height: 912px;
+    max-height: 912px;
+
+}
+.scrollArea {
     overflow-y: auto;
     overflow-x: hidden;
+    max-height: 716px;
 }
 
 .title {
@@ -21,15 +25,15 @@
     line-height: 40px;
 }
 
-.main::-webkit-scrollbar-thumb {
+.scrollArea::-webkit-scrollbar-thumb {
 	background: #8585AD;
 	border: 3px solid #8585AD;
 }
-.main::-webkit-scrollbar {
+.scrollArea::-webkit-scrollbar {
 	width: 8px;
 }
 
-.main::-webkit-scrollbar-track {
+.scrollArea::-webkit-scrollbar-track {
 	background: #2F2F37;
 }
 
