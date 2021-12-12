@@ -1,0 +1,9 @@
+.main {
+    position: absolute;
+    width: 720px;
+    height: 539px;
+    background: #1C1C21;
+    top: 30vh;
+    left: 50vh;
+    border-radius: 40px;
+}

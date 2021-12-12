@@ -1,0 +1,37 @@
+.value {
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 144px;
+    line-height: 120px;
+    text-align: center;
+}
+
+.identify {
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.checkMark {
+    text-align: center;
+
+}
+
+.remark {
+    font-family: 'Jet Brains Mono';
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.wish {
+    text-align: center;
+    font-family: 'Jet Brains Mono';
+    font-size: 16px;
+    line-height: 24px;
+
+}

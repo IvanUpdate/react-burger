@@ -1,0 +1,11 @@
+.header {
+    font-family: 'Jet Brains Mono';
+    color: #F2F2F3;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

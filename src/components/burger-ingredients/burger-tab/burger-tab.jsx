@@ -7,7 +7,7 @@ export default function TabPoint() {
     return (
       <div className={ burgerTabStyles.main } >
         <Tab value="one" active={current === 'one'} onClick={setCurrent}>
-          Бургеры
+          Булки
         </Tab>
         <Tab value="two" active={current === 'two'} onClick={setCurrent}>
           Соусы
