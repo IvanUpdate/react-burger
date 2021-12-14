@@ -24,15 +24,14 @@
 }
 
 .price {
-    display:inline-block;
+    display: inline-block;
     font-family: Iceland;
     font-size: 28px;
-    width: 30px;
     height: 24px;;
 }
 
 .currency {
-    display:inline-block;
+    display: inline-block;
     width: 24px;
     height: 24px;
 }

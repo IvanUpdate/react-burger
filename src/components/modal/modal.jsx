@@ -6,24 +6,26 @@ import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 
 const Modal = (props) => {
-    const escFunction = (event) => {
-        if (event.keyCode === 27) {
-            props.closeTheWindow();
-        }
-    }
+    
     React.useEffect(() => {
+        const escFunction = (event) => {
+            if (event.keyCode === 27) {
+                props.closeTheWindow();
+            }
+        }
         document.addEventListener("keydown", escFunction);
         return () => {
             document.removeEventListener("keydown", escFunction);
         }
-    }, [escFunction])
+    }, [props, props.closeTheWindow])
 
 
 
 
     return ReactDOM.createPortal(
-        <ModalOverlay onClose={props.closeTheWindow}>
-            <div>
+        <div>
+        <ModalOverlay onClose={props.closeTheWindow}/>
+            <div className={modalStyles.main}>
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
                     <span className={modalStyles.title}>{props.title}</span>
                     <span onClick={props.closeTheWindow}><CloseIcon type="primary" /></span>
@@ -32,14 +34,14 @@ const Modal = (props) => {
                 {props.children}
                 </div>
             </div>
-        </ModalOverlay>,
-        document.getElementById('root')
+        </div>,
+        document.getElementById('modal-root')
     )
 }
 
 export default Modal;
 
 Modal.propTypes = {
-    onClose: PropTypes.func.isRequired,
+    closeTheWindow: PropTypes.func.isRequired,
     children: PropTypes.element
 }

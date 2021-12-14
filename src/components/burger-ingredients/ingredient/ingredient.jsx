@@ -20,11 +20,11 @@ function Ingredient(props) {
             <div className = { ingredientStyles.counter }><Counter count={1} size="default" /></div>
             <img src= {props.item.image} alt='' className = { ingredientStyles.image+' mr-4 ml-4' }/>
             <div className= { ingredientStyles.currencyBlock+' pt-1 pb-1'}>
-            <span className= { ingredientStyles.price}>{props.item.price}</span>
-            <span className = { ingredientStyles.currency+' ml-4' }><CurrencyIcon type="primary" /></span>
+            <span className= { ingredientStyles.price+' mr-2'}>{props.item.price}</span>
+            <span className = { ingredientStyles.currency }><CurrencyIcon type="primary" /></span>
             </div>
             <div className= { ingredientStyles.name }>
-                <span>{props.name}</span>
+                <span>{props.item.name}</span>
             </div>
         </div>
         {modal  && (
@@ -38,7 +38,7 @@ function Ingredient(props) {
 export default Ingredient;
 
 Ingredient.propTypes = { 
-    data: PropTypes.arrayOf(PropTypes.shape({  
+    item: PropTypes.objectOf(PropTypes.shape({  
       _id: PropTypes.string,
       name: PropTypes.string,
       type: PropTypes.string,

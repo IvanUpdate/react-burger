@@ -4,33 +4,40 @@ import AppHeader from '../app-header/app-header';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 
+const API_URL = 'https://norma.nomoreparties.space/api/';
 
 function App() {
 
-  const url = 'https://norma.nomoreparties.space/api/ingredients';
-  const [data, setDate] = useState({
+
+  const [data, setData] = useState({
     data: [],
   });
 
   useEffect(() => {
+    const getDate = async() => {
+      try {
+        const response = await fetch(API_URL + 'ingredients');
+        if (!response.ok) {
+          throw new Error('Запрос не успешен!');
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        console.error("Ошибка:", error);
+      }
+    }
     getDate();
   }, []);
 
-  function getDate() {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setDate(data))
-      .catch((error) => {
-        console.log(error,'Something goes wrong');
-      });
-  }
+
+
   return (
     <div className={appstyles.App} id='modals'>
       <AppHeader />
-      <div className = {appstyles.main}>
-      <BurgerIngredients data={ data.data }/>
-      <BurgerConstructor data={ data.data }/>
-     
+      <div className={appstyles.main}>
+        <BurgerIngredients data={data.data} />
+        <BurgerConstructor data={data.data} />
+
       </div>
     </div>
   );

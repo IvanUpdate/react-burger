@@ -3,9 +3,14 @@ import burgerIngredients from './burger-ingredients.module.css';
 import TabPoint from "./burger-tab/burger-tab";
 import Ingredient from "./ingredient/ingredient";
 import PropTypes from 'prop-types';
+import shape from "../../utils/shape";
 
 
 export default function BurgerIngredients(props) {
+
+    const buns = props.data.filter(item=>(item.type === 'bun'));
+    const sauses = props.data.filter(item=>(item.type === 'sauce'));
+    const mains = props.data.filter(item=>(item.type === 'main'));
 
     return (
         <div className={burgerIngredients.main + ' mr-10'}>
@@ -14,26 +19,20 @@ export default function BurgerIngredients(props) {
             <div className={burgerIngredients.scrollArea}>
                 <h2 className={burgerIngredients.title2 + ' mt-10 mb-6'}>Булки</h2>
                 <div className={burgerIngredients.content}>
-                    {props.data.map(item => {
-                        if (item.type === 'bun') {
+                    {buns.map(item => {
                             return (<Ingredient item={item} key={item._id}/>)
-                        }
                     })}
                 </div>
                 <h2 className={burgerIngredients.title2 + ' mt-10 mb-6'}>Соусы</h2>
                 <div className={burgerIngredients.content}>
-                    {props.data.map(item => {
-                        if (item.type === 'sauce') {
+                    {sauses.map(item => {
                             return (<Ingredient item={item} key={item._id}/>)
-                        }
                     })}
                 </div>
                 <h2 className={burgerIngredients.title2 + ' mt-10'}>Начинки</h2>
                 <div className={burgerIngredients.content}>
-                    {props.data.map(item => {
-                        if (item.type === 'main') {
+                    {mains.map(item => {
                             return (<Ingredient item={item} key={item._id}/>);
-                        }
                     })}
                 </div>
             </div>
@@ -42,19 +41,6 @@ export default function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-        proteins: PropTypes.number,
-        fat: PropTypes.number,
-        carbohydrates: PropTypes.number,
-        calories: PropTypes.number,
-        price: PropTypes.number,
-        image: PropTypes.string,
-        image_mobile: PropTypes.string,
-        image_large: PropTypes.string,
-        __v: PropTypes.number
-    })).isRequired,
+    data: PropTypes.arrayOf(PropTypes.shape(shape)).isRequired,
 };
 

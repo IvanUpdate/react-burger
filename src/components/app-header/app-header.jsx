@@ -7,30 +7,30 @@ function AppHeader() {
         <header className={appHeaderStyles.header}>
             <nav className={appHeaderStyles.nav}>
 
-                <div className = {appHeaderStyles.leftButtons}>
-                <Button type= 'secondary' size="medium">
-                <div className = { appHeaderStyles.buttonInside }>
-                    <span><BurgerIcon type="primary" /></span>
-                    <span className = 'ml-2'>Конструктор</span>
-                </div>
-                </Button>
-                <Button type= 'secondary' size="medium">
-                <div className = { appHeaderStyles.buttonInside }>
-                    <span><ListIcon type="primary" /></span>
-                    <span className = 'ml-2'>Лента заказов</span>
-                </div>
-                </Button>
+                <div className={appHeaderStyles.leftButtons}>
+                    <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
+                        <a href='/' className={appHeaderStyles.link}>
+                            <span><BurgerIcon type="primary" /></span>
+                            <span className='ml-2'>Конструктор</span>
+                        </a>
+                    </div>
+                    <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
+                        <a href='/' className={appHeaderStyles.link}>
+                            <span><ListIcon type="primary" /></span>
+                            <span className='ml-2'>Лента заказов</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div className='mr-30 pr-30'><Logo /></div>
-                
+
                 <div>
-                <Button type= 'secondary' size="medium">
-                <div className = { appHeaderStyles.buttonInside }>
-                    <span><ProfileIcon type="primary" /></span>
-                    <span className = 'ml-2'>Личный кабинет</span>
-                </div>
-                </Button>
+                    <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
+                        <a href='/' className={appHeaderStyles.link}>
+                            <span><ProfileIcon type="primary" /></span>
+                            <span className='ml-2'>Личный кабинет</span>
+                        </a>
+                    </div>
                 </div>
             </nav>
         </header>

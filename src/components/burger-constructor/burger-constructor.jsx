@@ -4,13 +4,13 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button, LockIcon } from '@y
 import PropTypes from 'prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from '../order-details/order-details';
-import data from '../../utils/data';
+import shape from "../../utils/shape";
 
 export default function BurgerConstructor (props){
 
     const [modal, setModal] = useState(false);
 
-    const img = 'https://code.s3.yandex.net/react/code/bun-02-mobile.png'
+    const img = 'https://code.s3.yandex.net/react/code/bun-02-mobile.png';
 
     const switchModal = () => {
         setModal(!modal)
@@ -19,21 +19,21 @@ export default function BurgerConstructor (props){
     return (
         <>
         <div className={burgerConstructorStyles.main + ' pt-25'}>
-            <div className='mt-4 ml-8'>
+            <div className='mt-4 ml-6'>
                 <ConstructorElement text="Краторная булка N-200i (верх)" price={200} thumbnail={img} isLocked={true} type='top'  />
             </div>
             <div className={burgerConstructorStyles.scrollArea}>
-                {props.data.map((item) => {
+            {props.data.filter(item=>item.type!=='bun').map((item, index) => {
                     return (
-                        <div className={burgerConstructorStyles.item + "  mt-4 mr-8"} key={item._id}>
+                        <div className={burgerConstructorStyles.item + "  mt-4 mr-8"} key={item._id+index}>
                             <DragIcon type="primary" />
                             <ConstructorElement text={item.name} price={item.price} thumbnail={item.image} />
                         </div>
                     )
                 })}
             </div>
-            <div className='mt-4 ml-8'>
-                <ConstructorElement text="Краторная булка N-200i (верх)" price={200} thumbnail={img} isLocked={true} type='bottom'  />
+            <div className='mt-4 ml-6'>
+                <ConstructorElement text="Краторная булка N-200i (низ)" price={200} thumbnail={img} isLocked={true} type='bottom'  />
             </div>
             <div className={burgerConstructorStyles.total + ' mt-10'}>
                 <span className={burgerConstructorStyles.price + ' mr-10'}>610<CurrencyIcon type="primary" /></span>
@@ -52,18 +52,5 @@ export default function BurgerConstructor (props){
         }
 
 BurgerConstructor.propTypes = {
-    constructor: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-        proteins: PropTypes.number,
-        fat: PropTypes.number,
-        carbohydrates: PropTypes.number,
-        calories: PropTypes.number,
-        price: PropTypes.number,
-        image: PropTypes.string,
-        image_mobile: PropTypes.string,
-        image_large: PropTypes.string,
-        __v: PropTypes.number
-    })).isRequired,
+    data: PropTypes.arrayOf(PropTypes.shape(shape)).isRequired,
 };
