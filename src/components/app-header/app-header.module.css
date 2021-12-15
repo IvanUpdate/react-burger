@@ -1,0 +1,39 @@
+.header {
+    background: #1C1C21;
+    display: flex;
+    height: 88px;
+    max-width: 1920px;
+}
+
+
+.logo {
+    height: 40px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.link {
+    font-family: 'Jet Brains Mono';
+    font-size: 16px;
+    color: #F2F2F3;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.leftButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

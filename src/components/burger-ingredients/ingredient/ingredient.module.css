@@ -1,0 +1,45 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 272px;
+    position: relative;
+}
+
+.image {
+    width: 240px;
+    height: 120px;
+    border-top: none;
+}
+
+.name {
+    width: 272px;
+    height: 48px;
+    text-align: center;
+}
+
+.currencyBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price {
+    display: inline-block;
+    font-family: Iceland;
+    font-size: 28px;
+    height: 24px;;
+}
+
+.currency {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.counter {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 0px;
+    right: 0px;
+}

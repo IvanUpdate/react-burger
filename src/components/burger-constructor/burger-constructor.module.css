@@ -1,0 +1,44 @@
+.main {
+    width: 600px;
+    max-height: 912px;
+
+}
+.scrollArea {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 500px;
+}
+
+.title {
+    font-family: 'Jet Brains mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+	background: #8585AD;
+}
+.scrollArea::-webkit-scrollbar {
+	width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.price {
+    display: block;
+    font-family: 'Iceland';
+    font-size: 48px;
+    font-weight: 400;
+}
+.total {
+    display: flex;
+    justify-content: flex-end;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
