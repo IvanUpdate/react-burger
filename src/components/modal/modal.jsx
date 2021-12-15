@@ -17,13 +17,13 @@ const Modal = (props) => {
         return () => {
             document.removeEventListener("keydown", escFunction);
         }
-    }, [props, props.closeTheWindow])
+    }, [props.closeTheWindow])
 
 
 
 
     return ReactDOM.createPortal(
-        <div>
+        <>
         <ModalOverlay onClose={props.closeTheWindow}/>
             <div className={modalStyles.main}>
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
@@ -34,7 +34,7 @@ const Modal = (props) => {
                 {props.children}
                 </div>
             </div>
-        </div>,
+        </>,
         document.getElementById('modal-root')
     )
 }

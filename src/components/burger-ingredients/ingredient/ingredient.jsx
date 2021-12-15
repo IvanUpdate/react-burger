@@ -4,6 +4,7 @@ import ingredientStyles from './ingredient.module.css';
 import PropTypes from 'prop-types';
 import Modal from "../../modal/modal";
 import IngredientDetails from "../../ingredient-details/ingredient-details";
+import shape from "../../../utils/shape";
 
 function Ingredient(props) {
 
@@ -38,18 +39,5 @@ function Ingredient(props) {
 export default Ingredient;
 
 Ingredient.propTypes = { 
-    item: PropTypes.objectOf(PropTypes.shape({  
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-      proteins: PropTypes.number,
-      fat: PropTypes.number,
-      carbohydrates: PropTypes.number,
-      calories: PropTypes.number,
-      price: PropTypes.number,
-      image: PropTypes.string,
-      image_mobile: PropTypes.string,
-      image_large: PropTypes.string,
-      __v: PropTypes.number
-    })).isRequired,
+    item: PropTypes.shape(shape).isRequired
   };

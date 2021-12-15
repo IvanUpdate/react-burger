@@ -26,5 +26,5 @@ const IngredientDetails = (props) => {
 export default IngredientDetails;
 
   IngredientDetails.propTypes = { 
-    item: PropTypes.objectOf(PropTypes.shape(shape)).isRequired,
+    item: PropTypes.shape(shape).isRequired
   };
