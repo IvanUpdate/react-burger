@@ -6,7 +6,7 @@ import ingredientStyles from './ingredient.module.css';
 import PropTypes from 'prop-types';
 import Modal from "../../modal/modal";
 import IngredientDetails from "../../ingredient-details/ingredient-details";
-import shape from "../../../utils/shape";
+import shape from "../../../utils/ingredient-type";
 import {
     SHOW_INGREDIENT,
     HIDE_INGREDIENT,

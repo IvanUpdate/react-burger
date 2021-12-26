@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 import {useSelector} from "react-redux";
-import orderStyles from './order-details.module.css'
-import image from '../../images/done.png'
+import orderStyles from './order-details.module.css';
+import image from '../../images/done.png';
 import PropTypes from "prop-types";
 
 const OrderDetails = () => {
@@ -17,7 +17,7 @@ const OrderDetails = () => {
             <div className={orderStyles.wish + ' mt-2 mb-30'}>Дождитесь готовности на орбитальной станции</div>
         </div>
     )
-}
+};
 
 export default OrderDetails;
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {getIngredients} from "../../services/actions/ingredients";
 import appstyles from './App.module.css';
@@ -19,7 +19,7 @@ function App() {
     }, []);
 
     return (
-        <div className={appstyles.App} id='modals'>
+        <div className={appstyles.App}>
             <AppHeader/>
             <div className={appstyles.main}>
                 <DndProvider backend={HTML5Backend}>

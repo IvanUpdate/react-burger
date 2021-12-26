@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 
 export default function ModalOverlay(props) {
     return (
-        <div className={overlayStyles.main} onClick={props.closeTheModal}>
+        <div className={overlayStyles.main} onClick={props.onClose}>
         </div>
     )
 };
 
 ModalOverlay.propTypes = {
-    closeTheModal: PropTypes.func.isRequired
+    onClose: PropTypes.func
 }

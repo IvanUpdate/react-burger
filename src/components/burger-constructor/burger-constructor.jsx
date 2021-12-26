@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useMemo} from "react";
+import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import burgerConstructorStyles from './burger-constructor.module.css';
@@ -10,14 +10,15 @@ import PropTypes from 'prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from '../order-details/order-details';
 import BurgerIngredient from "./burger-constructor-ingredient/burger-constructor-ingredient";
-import shape from "../../utils/shape";
+import ingredientType from "../../utils/ingredient-type";
 import {getOrder} from "../../services/actions/order-details";
 import {
     ADD_ITEM,
     INIT_NEW_CART,
-    ADD_BUN,
-    REMOVE_BUN
+    ADD_BUNS,
+    REMOVE_BUNS
 } from "../../services/actions/burger-constructor";
+
 
 export default function BurgerConstructor() {
 
@@ -27,6 +28,7 @@ export default function BurgerConstructor() {
     const [modal, setModal] = useState(false);
     const price = useSelector(state => state.constructor.totalPrice);
     const bunsArray = useSelector(state => state.constructor.bunsArray);
+    const [isBunInOrder, setIsBunInOrder] = useState(false);
 
     useEffect(() => {
         dispatch({
@@ -36,16 +38,17 @@ export default function BurgerConstructor() {
 
     const onDropHandler = (itemId) => {
         if (itemId.type === 'bun') {
-            if (bunsArray.length === 2) {
+            if (isBunInOrder) {
+                setIsBunInOrder(false);
                 dispatch({
-                    type: REMOVE_BUN,
-                    payload: itemId
+                    type: REMOVE_BUNS,
                 });
             }
             dispatch({
-                type: ADD_BUN,
+                type: ADD_BUNS,
                 payload: itemId
             });
+            setIsBunInOrder(true);
         } else {
             dispatch({
                 type: ADD_ITEM,
@@ -84,33 +87,35 @@ export default function BurgerConstructor() {
         return (
             <>
                 <div className={burgerConstructorStyles.main + ' pt-25'} ref={dropTarget}>
-                    {bunsArray[0] && <BurgerIngredient item={bunsArray[0]} key={1} layout='top'/>}
+                    {isBunInOrder && <BurgerIngredient item={bunsArray[0]} layout='top'/>}
                     <div className={burgerConstructorStyles.scrollArea} ref={drop}>
                         {orderIngredients && orderIngredients.map((item, index) => {
                             if (item.type !== 'bun') {
                                 return (
-                                    <BurgerIngredient item={item} key={index} index={index}/>
+                                    <BurgerIngredient item={item} index={index}/>
                                 )
                             }
                         })}
                     </div>
-                    {bunsArray[1] && <BurgerIngredient item={bunsArray[1]} key={2} layout='bottom'/>}
+                    {isBunInOrder && <BurgerIngredient item={bunsArray[1]} layout='bottom'/>}
                     <div className={burgerConstructorStyles.total + ' mt-10'}>
                         <span className={burgerConstructorStyles.price + ' mr-10'}>{price}<CurrencyIcon
                             type="primary"/></span>
-                        <Button type="primary" size="medium" onClick={() => {
+                        {isBunInOrder && <Button type="primary" size="medium" onClick={() => {
                             handleOrder([...orderIngredients, ...bunsArray]);
                             switchModal();
                         }}>
                             Оформить заказ
-                        </Button>
+                        </Button> }
                     </div>
                 </div>
                 {modal && (
                     <Modal title="" closeTheWindow={() => {setModal(false);
                         dispatch({
                             type: INIT_NEW_CART,
-                        });}}>
+                        });
+                        setIsBunInOrder(false);
+                    }}>
                         <OrderDetails/>
                     </Modal>)}
             </>
@@ -119,5 +124,5 @@ export default function BurgerConstructor() {
 }
 
 BurgerConstructor.propTypes = {
-    orderIngredients: PropTypes.arrayOf(PropTypes.shape(shape)).isRequired,
+    orderIngredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
 };

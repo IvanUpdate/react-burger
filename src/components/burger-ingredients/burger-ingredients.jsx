@@ -1,10 +1,8 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useSelector} from 'react-redux';
 import burgerIngredientsStyle from './burger-ingredients.module.css';
 import TabPoint from "./burger-tab/burger-tab";
 import Ingredient from "./ingredient/ingredient";
-import PropTypes from 'prop-types';
-import shape from "../../utils/shape";
 import {getTwoElementsDistant} from "../../services/get-twoelements-distant";
 
 
@@ -36,6 +34,23 @@ export default function BurgerIngredients() {
         }
     };
 
+    const changeCurrent = (value) =>{
+        setCurrent(value);
+        switch (value){
+            case 'bun':
+                bunsRef.current.scrollIntoView({behavior: 'smooth'});
+                break;
+            case 'sauce':
+                saucesRef.current.scrollIntoView({behavior: 'smooth'});
+                break;
+            case 'main':
+                mainsRef.current.scrollIntoView({behavior: 'smooth'});
+                break;
+            default:
+                break;
+        };
+    };
+
     if (ingredientsFailed) {
         return <p>Произошла ошибка при получении данных</p>
     } else if (ingredientsRequest) {
@@ -44,7 +59,7 @@ export default function BurgerIngredients() {
         return (
             <div className={burgerIngredientsStyle.main + ' mr-10'} ref={burgerTopRef}>
                 <h1 className={burgerIngredientsStyle.title + ' mt-10 mb-5'}>Соберите бургер</h1>
-                <TabPoint current={current}/>
+                <TabPoint current={current} changeCurrent={changeCurrent}/>
                 <div className={burgerIngredientsStyle.scrollArea} onScroll={handleScroll}>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10 mb-6'} ref={bunsRef}>Булки</h2>
                     <div className={burgerIngredientsStyle.content}>
@@ -70,9 +85,5 @@ export default function BurgerIngredients() {
     }
 }
 
-BurgerIngredients.propTypes = {
-    ingredientsFailed: PropTypes.bool,
-    ingredientsRequest: PropTypes.bool,
-    ingredients: PropTypes.arrayOf(PropTypes.shape(shape)),
-};
+
 

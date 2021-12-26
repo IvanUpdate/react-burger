@@ -1,15 +1,15 @@
 import React from "react";
+import uuid from "react-uuid";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch} from "react-redux";
 import burgerIngredientStyles from './burger-constructor-ingredient.module.css';
 import {useDrag, useDrop} from "react-dnd";
 import {MOVE_ITEMS, REMOVE_ITEM} from "../../../services/actions/burger-constructor";
 import PropTypes from "prop-types";
-import shape from "../../../utils/shape";
+import ingredientType from "../../../utils/ingredient-type";
 
 function BurgerIngredient({item, layout, index}) {
 
-    const {_id} = item;
     const dispatch = useDispatch();
 
     const handleClose = () => {
@@ -64,7 +64,7 @@ function BurgerIngredient({item, layout, index}) {
                 onDropChange(dragIndex, dropIndex);
             }
         },
-    }, [_id, dispatch]);
+    }, [dispatch]);
 
     const transform = isHover ? 'scale(1.1)' : '';
 
@@ -73,10 +73,10 @@ function BurgerIngredient({item, layout, index}) {
     } else {
         return (
             <div style={{transform}} className={burgerIngredientStyles.item + "  mt-4 mr-8"}
-                 ref={(node) => drag(drop(node))} draggable={true}>
+                 ref={(node) => drag(drop(node))} draggable={true} key={uuid()}>
                 <DragIcon type="primary"/>
                 <ConstructorElement handleClose={handleClose} text={item.name} price={item.price}
-                                    thumbnail={item.image}/>
+                                    thumbnail={item.image} />
             </div>);
     }
 }
@@ -84,7 +84,7 @@ function BurgerIngredient({item, layout, index}) {
 export default BurgerIngredient;
 
 BurgerIngredient.propTypes = {
-    item: PropTypes.arrayOf(PropTypes.shape(shape)).isRequired,
+    item: PropTypes.shape(ingredientType).isRequired,
     layout: PropTypes.string,
-    index: PropTypes.number.isRequired
+    index: PropTypes.number
 };

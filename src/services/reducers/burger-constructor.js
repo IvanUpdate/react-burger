@@ -3,8 +3,8 @@ import {
     REMOVE_ITEM,
     SET_CART,
     INIT_NEW_CART,
-    ADD_BUN,
-    REMOVE_BUN,
+    ADD_BUNS,
+    REMOVE_BUNS,
     MOVE_ITEMS
 } from "../actions/burger-constructor";
 
@@ -41,21 +41,20 @@ export const constructorReducer = (state = initialState, action) => {
                 count: state.count - 1,
                 totalPrice: state.totalPrice - action.payload.price
             };
-        case ADD_BUN:
+        case ADD_BUNS:
             return {
                 ...state,
-                bunsArray: [...state.bunsArray, action.payload],
-                count: state.count + 1,
-                totalPrice: state.totalPrice + action.payload.price
+                bunsArray: [action.payload, action.payload],
+                count: state.count + 2,
+                totalPrice: state.totalPrice + 2*action.payload.price
             };
-        case REMOVE_BUN:
-            let tempState = [...state.bunsArray];
-            const price = tempState.shift();
+        case REMOVE_BUNS:
+            const price = [...state.bunsArray].reduce((sum,element)=>(sum+element.price),0);
             return {
                 ...state,
-                bunsArray: tempState,
-                count: state.count - 1,
-                totalPrice: state.totalPrice - price.price
+                bunsArray: [],
+                count: state.count - 2,
+                totalPrice: state.totalPrice - price
             };
         case MOVE_ITEMS:
             let newItemArray = [...state.ingredients];

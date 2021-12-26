@@ -6,7 +6,7 @@
 .scrollArea {
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 660px;
+    max-height: 500px;
     min-height: 200px;
 }
 
