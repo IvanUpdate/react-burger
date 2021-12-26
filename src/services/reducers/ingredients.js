@@ -8,7 +8,7 @@ const initialState = {
     ingredientsRequest: false,
     ingredientsFailed: false,
     ingredients: []
-}
+};
 
 export const ingredientsReducer = (state = initialState, action) => {
     switch (action.type) {

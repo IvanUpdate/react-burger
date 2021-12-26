@@ -8,7 +8,7 @@ export function getIngredients() {
     return function (dispatch) {
         dispatch({
             type: GET_INGREDIENTS
-        })
+        });
         fetch(API_URL + 'ingredients').then(res => {
             if (res && res.ok) {
                 return res.json();

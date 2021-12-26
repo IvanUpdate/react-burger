@@ -9,7 +9,6 @@ export function getOrder(ingredients) {
         dispatch({
             type: GET_ORDER
         });
-
         fetch(API_URL + 'orders',
             {
                 method: 'POST',

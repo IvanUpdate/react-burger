@@ -11,7 +11,7 @@ const initialState = {
     ingredients: [],
     count: 0,
     totalPrice: 0,
-    bunsArray: []
+    bunsArray: [],
 };
 
 export const constructorReducer = (state = initialState, action) => {
