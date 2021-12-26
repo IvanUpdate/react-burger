@@ -1,7 +1,6 @@
 import {
     ADD_ITEM,
     REMOVE_ITEM,
-    SET_CART,
     INIT_NEW_CART,
     ADD_BUNS,
     REMOVE_BUNS,
@@ -17,13 +16,6 @@ const initialState = {
 
 export const constructorReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_CART:
-            return {
-                ...state,
-                ingredients: [action.payload],
-                count: state.count + 1,
-                totalPrice: action.payload.price
-            };
         case ADD_ITEM:
             return {
                 ...state,

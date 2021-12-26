@@ -1,5 +1,5 @@
 import React from "react";
-import uuid from "react-uuid";
+import uuid from 'react-uuid';
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch} from "react-redux";
 import burgerIngredientStyles from './burger-constructor-ingredient.module.css';
@@ -73,7 +73,7 @@ function BurgerIngredient({item, layout, index}) {
     } else {
         return (
             <div style={{transform}} className={burgerIngredientStyles.item + "  mt-4 mr-8"}
-                 ref={(node) => drag(drop(node))} draggable={true} key={uuid()}>
+                 ref={(node) => drag(drop(node))} draggable={true}>
                 <DragIcon type="primary"/>
                 <ConstructorElement handleClose={handleClose} text={item.name} price={item.price}
                                     thumbnail={item.image} />
