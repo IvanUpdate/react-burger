@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
+import uuid from 'react-uuid';
 import burgerConstructorStyles from './burger-constructor.module.css';
 import {
     CurrencyIcon,
@@ -12,12 +13,12 @@ import OrderDetails from '../order-details/order-details';
 import BurgerIngredient from "./burger-constructor-ingredient/burger-constructor-ingredient";
 import ingredientType from "../../utils/ingredient-type";
 import {getOrder} from "../../services/actions/order-details";
+import { addingItem } from "../../services/actions/burger-constructor";
 import {
     ADD_ITEM,
     INIT_NEW_CART,
     ADD_BUNS,
     REMOVE_BUNS,
-    addUuid
 } from "../../services/actions/burger-constructor";
 
 
@@ -52,10 +53,7 @@ export default function BurgerConstructor() {
             });
             setIsBunInOrder(true);
         } else {
-            dispatch({
-                type: ADD_ITEM,
-                payload: itemId
-            });
+            dispatch(addingItem(itemId));
         }
     };
 
@@ -94,7 +92,7 @@ export default function BurgerConstructor() {
                         {orderIngredients && orderIngredients.map((item, index) => {
                             if (item.type !== 'bun') {
                                 return (
-                                    <BurgerIngredient item={item} index={index} key={index+item._id}/>
+                                    <BurgerIngredient item={item} index={index} key={item.uuid}/>
                                 )
                             }
                         })}

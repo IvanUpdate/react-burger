@@ -69,4 +69,4 @@ export const constructorReducer = (state = initialState, action) => {
         }
 
     }
-}
+};
