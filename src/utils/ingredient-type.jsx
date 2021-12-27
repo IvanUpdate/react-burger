@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const shape ={
+const ingredientType ={
         _id: PropTypes.string,
         name: PropTypes.string,
         type: PropTypes.string,
@@ -15,4 +15,4 @@ const shape ={
         __v: PropTypes.number
 }
 
-export default shape;
+export default ingredientType;

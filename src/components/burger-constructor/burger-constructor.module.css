@@ -7,6 +7,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 500px;
+    min-height: 200px;
 }
 
 .title {
@@ -37,8 +38,9 @@
     display: flex;
     justify-content: flex-end;
 }
-.item {
+
+.header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }

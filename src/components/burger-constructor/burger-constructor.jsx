@@ -1,56 +1,128 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useDrop} from "react-dnd";
+import uuid from 'react-uuid';
 import burgerConstructorStyles from './burger-constructor.module.css';
-import { ConstructorElement, DragIcon, CurrencyIcon, Button, LockIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+    CurrencyIcon,
+    Button,
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from '../order-details/order-details';
-import shape from "../../utils/shape";
+import BurgerIngredient from "./burger-constructor-ingredient/burger-constructor-ingredient";
+import ingredientType from "../../utils/ingredient-type";
+import {getOrder} from "../../services/actions/order-details";
+import { addingItem } from "../../services/actions/burger-constructor";
+import {
+    ADD_ITEM,
+    INIT_NEW_CART,
+    ADD_BUNS,
+    REMOVE_BUNS,
+} from "../../services/actions/burger-constructor";
 
-export default function BurgerConstructor (props){
 
+export default function BurgerConstructor() {
+
+    const dispatch = useDispatch();
+    const orderIngredients = useSelector(state => state.constructor.ingredients);
+    const count = useSelector(state => state.constructor.count);
     const [modal, setModal] = useState(false);
+    const price = useSelector(state => state.constructor.totalPrice);
+    const bunsArray = useSelector(state => state.constructor.bunsArray);
+    const [isBunInOrder, setIsBunInOrder] = useState(false);
 
-    const img = 'https://code.s3.yandex.net/react/code/bun-02-mobile.png';
+    useEffect(() => {
+        dispatch({
+            type: INIT_NEW_CART,
+        });
+    }, []);
+
+
+    const onDropHandler = (itemId) => {
+        if (itemId.type === 'bun') {
+            if (isBunInOrder) {
+                setIsBunInOrder(false);
+                dispatch({
+                    type: REMOVE_BUNS,
+                });
+            }
+            dispatch({
+                type: ADD_BUNS,
+                payload: itemId
+            });
+            setIsBunInOrder(true);
+        } else {
+            dispatch(addingItem(itemId));
+        }
+    };
+
+    const [, dropTarget] = useDrop({
+        accept: 'ingredient',
+        drop: function (itemId) {
+            onDropHandler(itemId);
+        },
+    });
+
+    const [, dropTargetFirst] = useDrop({
+        accept: 'ingredient',
+        drop(itemId) {
+            onDropHandler(itemId);
+        },
+    });
+
+    const [, drop] = useDrop(() => ({accept: 'constructor-ingredient'}));
 
     const switchModal = () => {
         setModal(!modal)
     };
 
-    return (
-        <>
-        <div className={burgerConstructorStyles.main + ' pt-25'}>
-            <div className='mt-4 ml-6'>
-                <ConstructorElement text="Краторная булка N-200i (верх)" price={200} thumbnail={img} isLocked={true} type='top'  />
-            </div>
-            <div className={burgerConstructorStyles.scrollArea}>
-            {props.data.filter(item=>item.type!=='bun').map((item, index) => {
-                    return (
-                        <div className={burgerConstructorStyles.item + "  mt-4 mr-8"} key={item._id+index}>
-                            <DragIcon type="primary" />
-                            <ConstructorElement text={item.name} price={item.price} thumbnail={item.image} />
-                        </div>
-                    )
-                })}
-            </div>
-            <div className='mt-4 ml-6'>
-                <ConstructorElement text="Краторная булка N-200i (низ)" price={200} thumbnail={img} isLocked={true} type='bottom'  />
-            </div>
-            <div className={burgerConstructorStyles.total + ' mt-10'}>
-                <span className={burgerConstructorStyles.price + ' mr-10'}>610<CurrencyIcon type="primary" /></span>
-                <Button type="primary" size="medium" onClick={switchModal}>
-                    Оформить заказ
-                </Button>
-            </div>
-            
-        </div>
-        {modal && (
-            <Modal title="" closeTheWindow={() => setModal(false)}>
-                <OrderDetails value='034536' />
-            </Modal>)}
-        </>
-    )
-        }
+    const handleOrder = (ingr) => {
+        dispatch(getOrder(ingr));
+    };
+    if (!count) {
+        return (<h1 ref={dropTargetFirst} className={burgerConstructorStyles.header}>Начните перетаскивать ингредиенты
+            сюда</h1>);
+    } else {
+        return (
+            <>
+                <div className={burgerConstructorStyles.main + ' pt-25'} ref={dropTarget}>
+                    {isBunInOrder && <BurgerIngredient item={bunsArray[0]} layout='top'/>}
+                    <div className={burgerConstructorStyles.scrollArea} ref={drop}>
+                        {orderIngredients && orderIngredients.map((item, index) => {
+                            if (item.type !== 'bun') {
+                                return (
+                                    <BurgerIngredient item={item} index={index} key={item.uuid}/>
+                                )
+                            }
+                        })}
+                    </div>
+                    {isBunInOrder && <BurgerIngredient item={bunsArray[1]} layout='bottom'/>}
+                    <div className={burgerConstructorStyles.total + ' mt-10'}>
+                        <span className={burgerConstructorStyles.price + ' mr-10'}>{price}<CurrencyIcon
+                            type="primary"/></span>
+                        {isBunInOrder && <Button type="primary" size="medium" onClick={() => {
+                            handleOrder([...orderIngredients, ...bunsArray]);
+                            switchModal();
+                        }}>
+                            Оформить заказ
+                        </Button> }
+                    </div>
+                </div>
+                {modal && (
+                    <Modal title="" closeTheWindow={() => {setModal(false);
+                        dispatch({
+                            type: INIT_NEW_CART,
+                        });
+                        setIsBunInOrder(false);
+                    }}>
+                        <OrderDetails/>
+                    </Modal>)}
+            </>
+        )
+    }
+}
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape(shape)).isRequired,
+    orderIngredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import modalStyles from './modal.module.css';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 
 const Modal = (props) => {
-    
+
     React.useEffect(() => {
         const escFunction = (event) => {
             if (event.keyCode === 27) {
@@ -20,18 +20,16 @@ const Modal = (props) => {
     }, [props.closeTheWindow])
 
 
-
-
     return ReactDOM.createPortal(
         <>
-        <ModalOverlay onClose={props.closeTheWindow}/>
+            <ModalOverlay onClose={props.closeTheWindow}/>
             <div className={modalStyles.main}>
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
                     <span className={modalStyles.title}>{props.title}</span>
-                    <span onClick={props.closeTheWindow}><CloseIcon type="primary" /></span>
+                    <span onClick={props.closeTheWindow}><CloseIcon type="primary"/></span>
                 </div>
                 <div>
-                {props.children}
+                    {props.children}
                 </div>
             </div>
         </>,
