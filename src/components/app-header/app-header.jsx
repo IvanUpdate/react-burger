@@ -1,5 +1,6 @@
 import React from "react";
 import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Link } from 'react-router-dom';
 import appHeaderStyles from './app-header.module.css'
 
 function AppHeader() {
@@ -8,10 +9,10 @@ function AppHeader() {
             <nav className={appHeaderStyles.nav}>
                 <div className={appHeaderStyles.leftButtons}>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
-                        <a href='/' className={appHeaderStyles.link}>
+                        <Link to='/' className={appHeaderStyles.link}>
                             <span><BurgerIcon type="primary"/></span>
                             <span className='ml-2'>Конструктор</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
                         <a href='/' className={appHeaderStyles.link}>
@@ -23,10 +24,10 @@ function AppHeader() {
                 <div className='mr-30 pr-30'><Logo/></div>
                 <div>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
-                        <a href='/' className={appHeaderStyles.link}>
+                        <Link to='/profile' className={appHeaderStyles.link}>
                             <span><ProfileIcon type="primary"/></span>
                             <span className='ml-2'>Личный кабинет</span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </nav>

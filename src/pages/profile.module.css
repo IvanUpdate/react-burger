@@ -1,0 +1,31 @@
+.main {
+    display: flex;
+    margin-top: 140px;
+    margin-left: 23vw;
+}
+
+.sideBarContent {
+    font-size: 24px;
+    font-family: 'Jet Brains Mono', sans-serif;
+    line-height: 30px;
+    color: #F2F2F3;
+    text-decoration: none;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+
+.sideBar {
+        max-width: 320px;
+}
+
+.inputs {
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
