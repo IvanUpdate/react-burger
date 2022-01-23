@@ -12,6 +12,7 @@ const initialState = {
     count: 0,
     totalPrice: 0,
     bunsArray: [],
+    isBunInOrder: false,
 };
 
 export const constructorReducer = (state = initialState, action) => {
@@ -38,7 +39,8 @@ export const constructorReducer = (state = initialState, action) => {
                 ...state,
                 bunsArray: [action.payload, action.payload],
                 count: state.count + 2,
-                totalPrice: state.totalPrice + 2*action.payload.price
+                totalPrice: state.totalPrice + 2*action.payload.price,
+                isBunInOrder: true,
             };
         case REMOVE_BUNS:
             const price = [...state.bunsArray].reduce((sum,element)=>(sum+element.price),0);
@@ -46,7 +48,8 @@ export const constructorReducer = (state = initialState, action) => {
                 ...state,
                 bunsArray: [],
                 count: state.count - 2,
-                totalPrice: state.totalPrice - price
+                totalPrice: state.totalPrice - price,
+                isBunInOrder: false,
             };
         case MOVE_ITEMS:
             let newItemArray = [...state.ingredients];
@@ -62,7 +65,8 @@ export const constructorReducer = (state = initialState, action) => {
                 ingredients: [],
                 count: 0,
                 totalPrice: 0,
-                bunsArray: []
+                bunsArray: [],
+                isBunInOrder: false
             };
         default: {
             return state

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from './profile-info.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {getUser} from "../../services/actions/auth";
+import {updateUser} from "../../services/actions/auth";
 
 export const ProfileInfo = () => {
 
@@ -18,10 +18,17 @@ export const ProfileInfo = () => {
     const [emailDisabled, setEmailDisabled] = useState(true);
     const [passwordDisabled, setPasswordDisabled] = useState(true);
 
-    useEffect(() => {
-        dispatch(getUser());
-        console.log(user);
-    }, [dispatch]);
+    const update = (e) => {
+        e.preventDefault();
+        dispatch(updateUser(name || user.name, email || user.email, password));
+    };
+
+    const returnInfo = (e) =>{
+        e.preventDefault();
+        setName(user.name);
+        setEmail(user.email);
+        setPassword('******');
+    };
 
     return (user ? (
         <div className={styles.profile}>
@@ -65,10 +72,10 @@ export const ProfileInfo = () => {
                 size={'default'}
             />
             <div className={styles.buttons+' pt-5'}>
-                <Button type='primary' size='small' onClick={() => {
-                }}>Сохранить</Button>
-                <Button type='primary' size='small' onClick={() => {
-                }}>Отмена</Button>
+                <Button type='primary' size='small' onClick={(e) => {
+                update(e)}}>Сохранить</Button>
+                <Button type='primary' size='small' onClick={(e) => {
+                returnInfo(e)}}>Отмена</Button>
             </div>
         </div>) : null);
 }

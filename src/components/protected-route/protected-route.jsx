@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Redirect } from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,7 +9,7 @@ export function ProtectedRoute({children, ...rest}) {
 
     const dispatch = useDispatch();
     const [isUserLoaded, setUserLoaded] = useState(false);
-    const user = useSelector((store)=> store.auth.user);
+    const isLogin = useSelector((store)=> store.auth.isLogin);
 
     const init = async () => {
         await getUser();
@@ -17,6 +18,7 @@ export function ProtectedRoute({children, ...rest}) {
 
     useEffect(()=>{
         init();
+        console.log('start');
     },[dispatch]);
 
     if (!isUserLoaded) {
@@ -27,7 +29,7 @@ export function ProtectedRoute({children, ...rest}) {
         <Route
             {...rest}
             render={() =>
-                user ? (
+                isLogin ? (
                     children
                 ) : (
                     <Redirect

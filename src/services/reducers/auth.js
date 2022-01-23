@@ -34,7 +34,10 @@ const initialState = {
     updatePasswordRequest: false,
     updatePasswordApproved: false,
     refreshTokenRequest: false,
-    refreshTokenApproved: false
+    refreshTokenApproved: false,
+    updateUserRequest: false,
+    updateUserApproved: false,
+    isLogin: false
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -68,7 +71,8 @@ export const authReducer = (state = initialState, action) => {
         case LOGIN_USER_ERROR: {
             return {
                 ...state,
-                userDataFailed: true
+                userDataFailed: true,
+                isLogin: false
             };
         }
         case LOGIN_USER_SUCCESS: {
@@ -77,6 +81,7 @@ export const authReducer = (state = initialState, action) => {
                 user: action.user,
                 userDataRequest: false,
                 userDataFailed: false,
+                isLogin: true
             };
         }
         case LOGOUT_USER: {
@@ -97,12 +102,14 @@ export const authReducer = (state = initialState, action) => {
                 user: {},
                 userDataRequest: false,
                 userDataFailed: false,
+                isLogin: false
             };
         }
         case RESET_PASSWORD: {
             return {
                 ...state,
-                resetPasswordRequest: true
+                resetPasswordRequest: true,
+                resetPasswordApproved: false
             };
         }
         case RESET_PASSWORD_ERROR: {
@@ -169,7 +176,8 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userDataRequest: false,
-                userDataFailed: true
+                userDataFailed: true,
+                isLogin: false
             };
         }
         case GET_USER_SUCCESS: {
@@ -177,7 +185,30 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 user: action.user,
                 userDataRequest: false,
-                userDataFailed: false
+                userDataFailed: false,
+                isLogin: true
+            };
+        }
+        case UPDATE_USER: {
+            return {
+                ...state,
+                updateUserRequest: true
+            };
+        }
+        case UPDATE_USER_ERROR: {
+            return {
+                ...state,
+                updateUserRequest: false,
+                updateUserApproved: false,
+            };
+        }
+        case UPDATE_USER_SUCCESS: {
+            return {
+                ...state,
+                user: action.user,
+                updateUserRequest: false,
+                updateUserApproved: true,
+                isLogin: false
             };
         }
         default: {

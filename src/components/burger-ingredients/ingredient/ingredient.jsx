@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation } from "react-router-dom";
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from './ingredient.module.css';
 import PropTypes from 'prop-types';
-import Modal from "../../modal/modal";
-import IngredientDetails from "../../ingredient-details/ingredient-details";
 import shape from "../../../utils/ingredient-type";
 import {
     SHOW_INGREDIENT,
@@ -24,7 +22,6 @@ function Ingredient({item}) {
     let qty = item.type === 'bun' ? items.bunsArray.filter(element => element._id === _id).length :
         items.ingredients.filter(element => element._id === _id).length;
 
-    const [modal, setModal] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -38,23 +35,6 @@ function Ingredient({item}) {
         })
     });
 
-    /*useEffect(() => {
-        setElement();
-    });*/
-
-    const showElement = () => {
-        dispatch({
-            type: SHOW_INGREDIENT
-        });
-        setModal(true);
-    };
-
-    const hideElement = () => {
-        dispatch({
-            type: HIDE_INGREDIENT
-        });
-        setModal(false);
-    };
     const setElement = () => {
         dispatch({
             type: SET_INGREDIENT,

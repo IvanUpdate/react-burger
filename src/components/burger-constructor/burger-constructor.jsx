@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from 'react-router-dom';
 import {useDrop} from "react-dnd";
 import uuid from 'react-uuid';
 import burgerConstructorStyles from './burger-constructor.module.css';
@@ -13,7 +14,7 @@ import OrderDetails from '../order-details/order-details';
 import BurgerIngredient from "./burger-constructor-ingredient/burger-constructor-ingredient";
 import ingredientType from "../../utils/ingredient-type";
 import {getOrder} from "../../services/actions/order-details";
-import { addingItem } from "../../services/actions/burger-constructor";
+import {addingItem} from "../../services/actions/burger-constructor";
 import {
     ADD_ITEM,
     INIT_NEW_CART,
@@ -25,24 +26,18 @@ import {
 export default function BurgerConstructor() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const orderIngredients = useSelector(state => state.constructor.ingredients);
     const count = useSelector(state => state.constructor.count);
     const [modal, setModal] = useState(false);
     const price = useSelector(state => state.constructor.totalPrice);
     const bunsArray = useSelector(state => state.constructor.bunsArray);
-    const [isBunInOrder, setIsBunInOrder] = useState(false);
-
-    useEffect(() => {
-        dispatch({
-            type: INIT_NEW_CART,
-        });
-    }, [dispatch]);
-
+    const isBunInOrder = useSelector(state => state.constructor.isBunInOrder);
+    const isLogin = useSelector((store) => store.auth.isLogin);
 
     const onDropHandler = (itemId) => {
         if (itemId.type === 'bun') {
             if (isBunInOrder) {
-                setIsBunInOrder(false);
                 dispatch({
                     type: REMOVE_BUNS,
                 });
@@ -51,7 +46,6 @@ export default function BurgerConstructor() {
                 type: ADD_BUNS,
                 payload: itemId
             });
-            setIsBunInOrder(true);
         } else {
             dispatch(addingItem(itemId));
         }
@@ -74,12 +68,19 @@ export default function BurgerConstructor() {
     const [, drop] = useDrop(() => ({accept: 'constructor-ingredient'}));
 
     const switchModal = () => {
-        setModal(!modal)
+        setModal(!modal);
     };
 
-    const handleOrder = (ingr) => {
-        dispatch(getOrder(ingr));
+    const handleOrder = () => {
+        if (!isLogin) {
+            switchModal();
+            history.replace('/login');
+        } else {
+            dispatch(getOrder([...orderIngredients, ...bunsArray]));
+            switchModal();
+        }
     };
+
     if (!count) {
         return (<h1 ref={dropTargetFirst} className={burgerConstructorStyles.header}>Начните перетаскивать ингредиенты
             сюда</h1>);
@@ -102,19 +103,18 @@ export default function BurgerConstructor() {
                         <span className={burgerConstructorStyles.price + ' mr-10'}>{price}<CurrencyIcon
                             type="primary"/></span>
                         {isBunInOrder && <Button type="primary" size="medium" onClick={() => {
-                            handleOrder([...orderIngredients, ...bunsArray]);
-                            switchModal();
+                            handleOrder();
                         }}>
                             Оформить заказ
-                        </Button> }
+                        </Button>}
                     </div>
                 </div>
                 {modal && (
-                    <Modal title="" closeTheWindow={() => {setModal(false);
+                    <Modal title="" closeTheWindow={() => {
+                        setModal(false);
                         dispatch({
                             type: INIT_NEW_CART,
                         });
-                        setIsBunInOrder(false);
                     }}>
                         <OrderDetails/>
                     </Modal>)}

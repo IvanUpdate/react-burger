@@ -21,7 +21,7 @@ export function getIngredients() {
                 dispatch({
                     type: GET_INGREDIENTS_SUCCESS,
                     ingredients: res.data
-                })
+                });
             }
         ).catch(err => {
             dispatch({

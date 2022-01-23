@@ -38,14 +38,21 @@ export const registerRequest = (email, password, name) => async (dispatch) => {
         const response = await AuthService.register(email, password, name);
         localStorage.setItem('token', response.data.accessToken.split('Bearer ')[1]);
         localStorage.setItem('rtoken', response.data.refreshToken);
-        console.log(response.data);
+        if (response.data.success) {
         dispatch({
             type: REFRESH_TOKEN_SUCCESS
         });
         dispatch({
             type: REGISTER_USER_SUCCESS,
             user: response.data.user
-        })
+        }) } else {
+            dispatch({
+                type: REFRESH_TOKEN_ERROR
+            });
+            dispatch({
+                type: REGISTER_USER_ERROR
+            });
+        }
     } catch (e) {
         dispatch({
             type: REFRESH_TOKEN_ERROR
@@ -68,17 +75,23 @@ export const loginRequest = (email, password) => async (dispatch) => {
         const response = await AuthService.login(email, password);
         localStorage.setItem('token', response.data.accessToken.split('Bearer ')[1]);
         localStorage.setItem('rtoken', response.data.refreshToken);
-        console.log(response.data);
-        console.log('gh');
-        dispatch({
-            type: REFRESH_TOKEN_SUCCESS
-        });
-        dispatch({
-            type: LOGIN_USER_SUCCESS,
-            user: response.data.user
-        })
+        if (response.data.success) {
+            dispatch({
+                type: REFRESH_TOKEN_SUCCESS
+            });
+            dispatch({
+                type: LOGIN_USER_SUCCESS,
+                user: response.data.user
+            })
+        } else {
+            dispatch({
+                type: REFRESH_TOKEN_ERROR
+            });
+            dispatch({
+                type: LOGIN_USER_ERROR
+            });
+        }
     } catch (e) {
-        console.log('hm');
         dispatch({
             type: REFRESH_TOKEN_ERROR
         });
@@ -94,7 +107,8 @@ export const logOut = () => async (dispatch) => {
     });
 
     try {
-        const response = await AuthService.logout();
+        const token = localStorage.getItem('rtoken');
+        const response = await AuthService.logout(token);
         localStorage.removeItem('token');
         localStorage.removeItem('rtoken');
         dispatch({
@@ -154,31 +168,6 @@ export const updatePassword = (password, token) => async (dispatch) => {
     }
 };
 
-export const refreshToken = (token) => async (dispatch) => {
-    dispatch({
-        type: REFRESH_TOKEN
-    });
-
-    try {
-        const response = await AuthService.refreshToken({token});
-        if (response.data.success) {
-            localStorage.setItem('token', response.data.accessToken.split('Bearer ')[1]);
-            console.log(response.data);
-            dispatch({
-                type: REFRESH_TOKEN_SUCCESS
-            })
-        } else {
-            dispatch({
-                type: REFRESH_TOKEN_ERROR
-            });
-        }
-    } catch (e) {
-        dispatch({
-            type: REFRESH_TOKEN_ERROR
-        });
-    }
-};
-
 export const getUser = () => async (dispatch) => {
     dispatch({
         type: GET_USER
@@ -187,7 +176,6 @@ export const getUser = () => async (dispatch) => {
     try {
         const response = await AuthService.getUser();
         if (response.data.success) {
-            console.log(response.data);
             dispatch({
                 type: GET_USER_SUCCESS,
                 user: response.data.user
@@ -204,6 +192,32 @@ export const getUser = () => async (dispatch) => {
     }
 };
 
-/*export const checkAuth = */
+export const updateUser = (name, email, password) => async (dispatch) => {
+    dispatch({
+        type: UPDATE_USER
+    });
+
+    try {
+        const response = await AuthService.updateUser(name, email, password);
+        console.log(response.data);
+        if (response.data.success) {
+            console.log(response.data);
+            dispatch({
+                type: UPDATE_USER_SUCCESS,
+                user: response.data.user
+            })
+        } else {
+            console.log('wrong1');
+            dispatch({
+                type: UPDATE_USER_ERROR
+            });
+        }
+    } catch (e) {
+        console.log('wrong2');
+        dispatch({
+            type: UPDATE_USER_ERROR
+        });
+    }
+};
 
 
