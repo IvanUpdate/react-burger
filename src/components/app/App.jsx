@@ -22,14 +22,12 @@ import {deleteIngredient, initIngredient} from "../../services/actions/detailed-
 import {getUser} from "../../services/actions/auth";
 import {LayoutCenterIngredient} from "../layout-center-ingredient/layout-center-ingredient";
 
-export const API_URL = 'https://norma.nomoreparties.space/api/';
-
 function App() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    let location = useLocation();
-    let background = location.state && location.state.background;
+    const location = useLocation();
+    const background = location.state && location.state.background;
 
 
     useEffect(() => {

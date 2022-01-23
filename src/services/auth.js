@@ -20,7 +20,7 @@ export default class AuthService {
     }
 
     static async updatePassword(password, token) {
-        return $api.post(API_URL_RESET+'/reset', {password, token});
+        return $api.post(API_URL_RESET+'reset', {password, token});
     }
 
     static async refreshToken(token) {

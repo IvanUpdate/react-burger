@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const API_URL = 'https://norma.nomoreparties.space/api/auth/';
-export const API_URL_USER = 'https://norma.nomoreparties.space/api/auth/user';
-export const API_URL_RESET = 'https://norma.nomoreparties.space/api/password-reset';
+export const BASE_URL = 'https://norma.nomoreparties.space/api';
+
+export const API_URL =  BASE_URL+'/auth/';
+export const API_URL_USER = BASE_URL+'/auth/user/';
+export const API_URL_RESET = BASE_URL+'/password-reset/';
 
 export const $api =axios.create({
     baseURL: API_URL

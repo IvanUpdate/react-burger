@@ -9,7 +9,7 @@ const Modal = (props) => {
 
     React.useEffect(() => {
         const escFunction = (event) => {
-            if (event.keyCode === 27) {
+            if (event.key === "Escape") {
                 props.closeTheWindow();
             }
         };

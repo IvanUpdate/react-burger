@@ -31,7 +31,7 @@ export const ProfileInfo = () => {
     };
 
     return (user ? (
-        <div className={styles.profile}>
+        <form className={styles.profile} onSubmit={update} >
             <Input
                 type={'text'}
                 placeholder={'Имя'}
@@ -72,10 +72,8 @@ export const ProfileInfo = () => {
                 size={'default'}
             />
             <div className={styles.buttons+' pt-5'}>
-                <Button type='primary' size='small' onClick={(e) => {
-                update(e)}}>Сохранить</Button>
-                <Button type='primary' size='small' onClick={(e) => {
-                returnInfo(e)}}>Отмена</Button>
+                <button type={onsubmit} className={styles.button}>Сохранить</button>
+                <button className={styles.button} onClick={returnInfo}>Отмена</button>
             </div>
-        </div>) : null);
+        </form>) : null);
 }

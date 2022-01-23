@@ -1,4 +1,4 @@
-import {API_URL} from "../../components/app/App";
+import {BASE_URL} from "../../http";
 
 export const GET_ORDER = 'GET_ORDER';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -9,7 +9,7 @@ export function getOrder(ingredients) {
         dispatch({
             type: GET_ORDER
         });
-        fetch(API_URL + 'orders',
+        fetch(BASE_URL + '/orders',
             {
                 method: 'POST',
                 headers: {
