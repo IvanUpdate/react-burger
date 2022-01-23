@@ -25,8 +25,8 @@ const Modal = (props) => {
             <ModalOverlay onClose={props.closeTheWindow}/>
             <div className={modalStyles.main}>
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
-                    <span className={modalStyles.title}>{props.title}</span>
-                    <span onClick={props.closeTheWindow}><CloseIcon type="primary"/></span>
+                    <div className={modalStyles.title}>Детали ингредиента</div>
+                    <div onClick={props.closeTheWindow}><CloseIcon type="primary"/></div>
                 </div>
                 <div>
                     {props.children}

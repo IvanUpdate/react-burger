@@ -1,0 +1,13 @@
+.profile {
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buttons {
+    /*margin: 0 auto;*/
+    display: flex;
+    justify-content: space-between;
+}
+

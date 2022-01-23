@@ -4,11 +4,12 @@ import ingredientStyles from './ingredient.details.module.css';
 
 const IngredientDetails = () => {
     const {name, image, calories, proteins, fat, carbohydrates} = useSelector(state => state.ingredient.item);
+
     return (
         <div className={ingredientStyles.main}>
             <img className={ingredientStyles.image + ' ml-25'} src={image} alt=''/>
             <div className={ingredientStyles.name + ' mt-4'}>{name}</div>
-            <div className={ingredientStyles.ingridients + ' mt-8 ml-25 mb-15'}>
+            <div className={ingredientStyles.ingredients + ' mt-8 ml-25 mb-15'}>
                 <ul>
                     <li><span className={ingredientStyles.type}>Калории,ккал</span><span
                         className={ingredientStyles.value}>{calories}</span></li>

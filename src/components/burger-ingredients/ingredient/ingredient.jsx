@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
+import {Link, useLocation } from "react-router-dom";
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from './ingredient.module.css';
 import PropTypes from 'prop-types';
@@ -27,6 +28,8 @@ function Ingredient({item}) {
 
     const dispatch = useDispatch();
 
+    const location = useLocation();
+
     const [{isDrag}, dragRef] = useDrag({
         type: 'ingredient',
         item: item,
@@ -35,9 +38,9 @@ function Ingredient({item}) {
         })
     });
 
-    useEffect(() => {
+    /*useEffect(() => {
         setElement();
-    });
+    });*/
 
     const showElement = () => {
         dispatch({
@@ -65,8 +68,12 @@ function Ingredient({item}) {
     };
 
     return (
-        <>
-            <div ref={dragRef} className={ingredientStyles.card + ' mr-2 ml-4 mb-8'} onClick={showElement}>
+        item && (<>
+            <Link ref={dragRef} className={ingredientStyles.card + ' mr-2 ml-4 mb-8'}
+                  to={{
+                      pathname: `/ingredients/${_id}`,
+                      state: { background: location }
+                  }} onClick={()=>setElement()}>
                 <div className={ingredientStyles.counter}><Counter count={qty} size="default"/></div>
                 <img src={image} alt='' className={ingredientStyles.image + ' mr-4 ml-4'}/>
                 <div className={ingredientStyles.currencyBlock + ' pt-1 pb-1'}>
@@ -76,15 +83,8 @@ function Ingredient({item}) {
                 <div className={ingredientStyles.name}>
                     <span>{name}</span>
                 </div>
-            </div>
-            {modal && (
-                <Modal title="Детали ингредиента" closeTheWindow={() => {
-                    hideElement();
-                    deleteElement();
-                }}>
-                    <IngredientDetails/>
-                </Modal>)}
-        </>
+            </Link>
+        </>)
     );
 }
 

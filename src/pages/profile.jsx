@@ -1,62 +1,25 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink, useLocation } from "react-router-dom";
 import styles from './profile.module.css';
 import {EditIcon, Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import { ProfileInfo } from '../components/profile-info/profile-info';
 
 export const Profile = () => {
 
-    const onIconClick = ()=>{
-        console.log('was clicked')
-    };
+    const location = useLocation();
 
     return (
+
         <div className={styles.main}>
             <div className={styles.sideBar}>
                 <div className={styles.links+' mb-20'}>
-                <Link to='/profile' className={styles.sideBarContent}>Профиль</Link>
-                <Link to='/profile/orders' className={styles.sideBarContent}>История заказов</Link>
-                <Link to='/profile/orders/:id' className={styles.sideBarContent}>Выход</Link>
+                <NavLink to='/profile' exact={true} className={styles.sideBarContent} activeClassName={styles.sideBarContentActive}>Профиль</NavLink>
+                <NavLink to='/profile/orders' exact={true} className={styles.sideBarContent} activeClassName={styles.sideBarContentActive}>История заказов</NavLink>
+                <NavLink to='' exact={true} className={styles.sideBarContent} activeClassName={styles.sideBarContentActive}>Выход</NavLink>
                 </div>
                 <span>В этом разделе вы можете изменить свои персональные данные</span>
             </div>
-            <div className={styles.inputs}>
-                <Input
-                    type={'text'}
-                    placeholder={'Имя'}
-                    /*onChange={e => setValue(e.target.value)}*/
-                    icon={'EditIcon'}
-                    value={'Ivan'}
-                    name={'name'}
-                    error={false}
-                    onIconClick={onIconClick}
-                    errorText={'Ошибка'}
-                    size={'default'}
-                />
-                <Input
-                    type={'email'}
-                    placeholder={'Логин'}
-                    /*onChange={e => setValue(e.target.value)}*/
-                    icon={'EditIcon'}
-                    value={'mir.iv@mail.ru'}
-                    name={'name'}
-                    error={false}
-                    onIconClick={onIconClick}
-                    errorText={'Ошибка'}
-                    size={'default'}
-                />
-                <Input
-                    type={'password'}
-                    placeholder={'Пароль'}
-                    /*onChange={e => setValue(e.target.value)}*/
-                    icon={'EditIcon'}
-                    value={'***'}
-                    name={'name'}
-                    error={false}
-                    onIconClick={onIconClick}
-                    errorText={'Ошибка'}
-                    size={'default'}
-                />
-            </div>
+            {location.pathname === "/profile" && <ProfileInfo />}
         </div>
     )
 };

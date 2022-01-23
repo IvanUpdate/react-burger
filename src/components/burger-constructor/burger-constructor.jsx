@@ -36,7 +36,7 @@ export default function BurgerConstructor() {
         dispatch({
             type: INIT_NEW_CART,
         });
-    }, []);
+    }, [dispatch]);
 
 
     const onDropHandler = (itemId) => {

@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 272px;
     position: relative;
+    text-decoration: none;
 }
 
 .image {
@@ -15,6 +16,7 @@
     width: 272px;
     height: 48px;
     text-align: center;
+    color: #F2F2F3;
 }
 
 .currencyBlock {
@@ -27,7 +29,8 @@
     display: inline-block;
     font-family: Iceland;
     font-size: 28px;
-    height: 24px;;
+    height: 24px;
+    color: #F2F2F3;
 }
 
 .currency {

@@ -8,8 +8,12 @@
     font-size: 24px;
     font-family: 'Jet Brains Mono', sans-serif;
     line-height: 30px;
-    color: #F2F2F3;
+    color: #8585AD;
     text-decoration: none;
+}
+
+.sideBarContentActive {
+    color: #F2F2F3;
 }
 
 .links {
@@ -22,7 +26,7 @@
         max-width: 320px;
 }
 
-.inputs {
+.profile {
     max-width: 480px;
     display: flex;
     flex-direction: column;
