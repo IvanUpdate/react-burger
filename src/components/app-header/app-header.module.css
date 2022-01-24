@@ -23,6 +23,18 @@
 .link {
     font-family: 'Jet Brains Mono';
     font-size: 16px;
+    color: #8585AD;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.linkActive {
+    font-family: 'Jet Brains Mono';
+    font-size: 16px;
     color: #F2F2F3;
     font-weight: bold;
     text-decoration: none;

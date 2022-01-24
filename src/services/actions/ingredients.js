@@ -1,4 +1,4 @@
-import {API_URL} from '../../components/app/App';
+import {BASE_URL} from "../../http";
 
 export const GET_INGREDIENTS = 'GET_INGREDIENTS';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
@@ -9,7 +9,7 @@ export function getIngredients() {
         dispatch({
             type: GET_INGREDIENTS
         });
-        fetch(API_URL + 'ingredients').then(res => {
+        fetch(BASE_URL+'/' + 'ingredients').then(res => {
             if (res && res.ok) {
                 return res.json();
             } else {
@@ -21,7 +21,7 @@ export function getIngredients() {
                 dispatch({
                     type: GET_INGREDIENTS_SUCCESS,
                     ingredients: res.data
-                })
+                });
             }
         ).catch(err => {
             dispatch({

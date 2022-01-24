@@ -9,10 +9,10 @@ const Modal = (props) => {
 
     React.useEffect(() => {
         const escFunction = (event) => {
-            if (event.keyCode === 27) {
+            if (event.key === "Escape") {
                 props.closeTheWindow();
             }
-        }
+        };
         document.addEventListener("keydown", escFunction);
         return () => {
             document.removeEventListener("keydown", escFunction);
@@ -25,8 +25,8 @@ const Modal = (props) => {
             <ModalOverlay onClose={props.closeTheWindow}/>
             <div className={modalStyles.main}>
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
-                    <span className={modalStyles.title}>{props.title}</span>
-                    <span onClick={props.closeTheWindow}><CloseIcon type="primary"/></span>
+                    <div className={modalStyles.title}>{props.title}</div>
+                    <div onClick={props.closeTheWindow}><CloseIcon type="primary"/></div>
                 </div>
                 <div>
                     {props.children}
@@ -35,11 +35,11 @@ const Modal = (props) => {
         </>,
         document.getElementById('modal-root')
     )
-}
+};
 
 export default Modal;
 
 Modal.propTypes = {
     closeTheWindow: PropTypes.func.isRequired,
     children: PropTypes.element
-}
+};

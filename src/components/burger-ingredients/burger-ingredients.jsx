@@ -51,7 +51,7 @@ export default function BurgerIngredients() {
         };
     };
 
-    if (ingredientsFailed) {
+    if (!ingredients) {
         return <p>Произошла ошибка при получении данных</p>
     } else if (ingredientsRequest) {
         return <p>Загрузка...</p>

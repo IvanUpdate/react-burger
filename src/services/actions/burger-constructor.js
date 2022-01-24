@@ -14,3 +14,11 @@ export const addingItem = (item) => {
         payload: uuidItem
     }
 };
+
+export const initNewCart = () => {
+    return (
+        {
+            type: INIT_NEW_CART,
+        }
+    )
+};

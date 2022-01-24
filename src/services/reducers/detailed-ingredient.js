@@ -1,12 +1,11 @@
 import {
-    SHOW_INGREDIENT,
-    HIDE_INGREDIENT,
     SET_INGREDIENT,
-    DELETE_INGREDIENT
+    DELETE_INGREDIENT,
+    INIT_INGREDIENT
 } from '../actions/detailed-ingredient';
 
 const initialState = {
-    item: null,
+    item: {},
     show: false
 };
 
@@ -21,18 +20,12 @@ export const ingredientReducer = (state = initialState, action) => {
         case DELETE_INGREDIENT: {
             return {
                 ...state,
-                item: null
+                item: {}
             };
         }
-        case SHOW_INGREDIENT: {
+        case INIT_INGREDIENT: {
             return {
-                ...state,
-                show: true
-            };
-        }
-        case HIDE_INGREDIENT: {
-            return {
-                ...state,
+                item: {},
                 show: false
             };
         }
@@ -41,4 +34,4 @@ export const ingredientReducer = (state = initialState, action) => {
         }
 
     }
-}
+};
