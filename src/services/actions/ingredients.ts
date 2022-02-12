@@ -5,11 +5,11 @@ export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_ERROR = 'GET_INGREDIENTS_ERROR';
 
 export function getIngredients() {
-    return function (dispatch) {
+    return function (dispatch:any) {
         dispatch({
             type: GET_INGREDIENTS
         });
-        fetch(BASE_URL+'/' + 'ingredients').then(res => {
+        fetch(BASE_URL+'/ingredients').then(res => {
             if (res && res.ok) {
                 return res.json();
             } else {

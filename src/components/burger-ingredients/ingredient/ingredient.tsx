@@ -1,26 +1,27 @@
-import React, {useState} from "react";
+import React, {FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation } from "react-router-dom";
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from './ingredient.module.css';
-import PropTypes from 'prop-types';
-import shape from "../../../utils/ingredient-type";
 import {
-    SHOW_INGREDIENT,
-    HIDE_INGREDIENT,
     DELETE_INGREDIENT,
     SET_INGREDIENT
 } from "../../../services/actions/detailed-ingredient";
+import {TItem} from "../../../types";
 
-function Ingredient({item}) {
+interface TItemObject {
+    item: TItem;
+}
+
+const Ingredient: FC<TItemObject> = ({item}) => {
 
     const {image, price, name, _id, type} = item;
 
-    const items = useSelector(state => state.constructor);
+    const items = useSelector((state:any) => state.constructor);
 
-    let qty = item.type === 'bun' ? items.bunsArray.filter(element => element._id === _id).length :
-        items.ingredients.filter(element => element._id === _id).length;
+    let qty = type === 'bun' ? items.bunsArray.filter((element: TItem) => element._id === _id).length :
+        items.ingredients.filter((element: TItem) => element._id === _id).length;
 
 
     const dispatch = useDispatch();
@@ -39,11 +40,6 @@ function Ingredient({item}) {
         dispatch({
             type: SET_INGREDIENT,
             payload: item
-        })
-    };
-    const deleteElement = () => {
-        dispatch({
-            type: DELETE_INGREDIENT,
         })
     };
 
@@ -70,6 +66,4 @@ function Ingredient({item}) {
 
 export default Ingredient;
 
-Ingredient.propTypes = {
-    item: PropTypes.shape(shape).isRequired
-};
+

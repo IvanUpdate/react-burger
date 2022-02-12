@@ -22,11 +22,21 @@ import {deleteIngredient, initIngredient} from "../../services/actions/detailed-
 import {getUser} from "../../services/actions/auth";
 import {LayoutCenterIngredient} from "../layout-center-ingredient/layout-center-ingredient";
 
+
+interface ILocationParams {
+    pathname: string;
+    state: {background: ILocationParams};
+    search: string;
+    hash: string;
+    key: string;
+    background: ILocationParams;
+}
+
 function App() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const location = useLocation();
+    const location = useLocation<ILocationParams>();
     const background = location.state && location.state.background;
 
 

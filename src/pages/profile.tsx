@@ -10,7 +10,7 @@ export const Profile = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const close = (e) => {
+    const close = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
         dispatch(logOut());
     };

@@ -1,14 +1,18 @@
-import React from "react";
-import uuid from 'react-uuid';
+import React, {FC} from "react";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch} from "react-redux";
 import burgerIngredientStyles from './burger-constructor-ingredient.module.css';
 import {useDrag, useDrop} from "react-dnd";
 import {MOVE_ITEMS, REMOVE_ITEM} from "../../../services/actions/burger-constructor";
-import PropTypes from "prop-types";
-import ingredientType from "../../../utils/ingredient-type";
+import {TItem} from "../../../types";
 
-function BurgerIngredient({item, layout, index}) {
+interface IBurgerIngredientProps {
+    item: TItem;
+    layout?: 'top' | 'bottom';
+    index?: number;
+}
+
+const BurgerIngredient: FC<IBurgerIngredientProps> = ({item, layout, index}) => {
 
     const dispatch = useDispatch();
 
@@ -19,8 +23,14 @@ function BurgerIngredient({item, layout, index}) {
         });
     };
 
-    const Bun = () => {
-        const remarkType = layout === 'top' ? ' (верх)' : ' (низ)';
+    interface IBun {
+        layout?: 'top' | 'bottom';
+        item: TItem;
+        remark: string;
+    }
+
+    const Bun:FC<IBun> = ({item, layout,remark}) => {
+        const remarkType = remark === 'top' ? ' (верх)' : ' (низ)';
         return (
             <div className='mt-4 ml-8'>
                 <ConstructorElement
@@ -33,7 +43,7 @@ function BurgerIngredient({item, layout, index}) {
         );
     };
 
-    const onDropChange = (dropIndex, dragIndex) => {
+    const onDropChange = (dropIndex:number | undefined, dragIndex:number | undefined) => {
         dispatch({
             type: MOVE_ITEMS,
             dropIndex: dropIndex,
@@ -57,7 +67,7 @@ function BurgerIngredient({item, layout, index}) {
                 isHover: monitor.isOver({shallow: true}),
             };
         },
-        drop(item) {
+        drop(item:{index:number}) {
             const dragIndex = index;
             const dropIndex = item.index;
             if (dropIndex !== dragIndex) {
@@ -69,7 +79,8 @@ function BurgerIngredient({item, layout, index}) {
     const transform = isHover ? 'scale(1.1)' : '';
 
     if (item.type === 'bun') {
-        return (<Bun {...item} layout='top'/>);
+        /*return (<Bun {...item} layout='top'/>);*/
+        return (<Bun item ={item} remark='top' layout={layout}/>);
     } else {
         return (
             <div style={{transform}} className={burgerIngredientStyles.item + "  mt-4 mr-8"}
@@ -83,8 +94,3 @@ function BurgerIngredient({item, layout, index}) {
 
 export default BurgerIngredient;
 
-BurgerIngredient.propTypes = {
-    item: PropTypes.shape(ingredientType).isRequired,
-    layout: PropTypes.string,
-    index: PropTypes.number
-};

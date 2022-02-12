@@ -1,24 +1,25 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {useSelector} from 'react-redux';
 import burgerIngredientsStyle from './burger-ingredients.module.css';
 import TabPoint from "./burger-tab/burger-tab";
 import Ingredient from "./ingredient/ingredient";
 import {getTwoElementsDistant} from "../../services/get-twoelements-distant";
+import {TItem, TItemValue} from "../../types";
 
 
 export default function BurgerIngredients() {
 
-    const {ingredients, ingredientsFailed, ingredientsRequest} = useSelector(state => state.ingredients);
+    const {ingredients, ingredientsRequest} = useSelector((state:any) => state.ingredients);
     const [current, setCurrent] = useState('bun');
 
-    const buns = ingredients.filter(item => (item.type === 'bun'));
-    const sauces = ingredients.filter(item => (item.type === 'sauce'));
-    const mains = ingredients.filter(item => (item.type === 'main'));
+    const buns = ingredients.filter((item: TItem) => (item.type === 'bun'));
+    const sauces = ingredients.filter((item: TItem)  => (item.type === 'sauce'));
+    const mains = ingredients.filter((item: TItem)  => (item.type === 'main'));
 
     const burgerTopRef = useRef(null);
-    const bunsRef = useRef(null);
-    const saucesRef = useRef(null);
-    const mainsRef = useRef(null);
+    const bunsRef = useRef<HTMLDivElement>(null);
+    const saucesRef = useRef<HTMLDivElement>(null);
+    const mainsRef = useRef<HTMLDivElement>(null);
 
     const handleScroll = () => {
         const bunsDistance = Math.abs(getTwoElementsDistant(burgerTopRef, bunsRef));
@@ -34,17 +35,23 @@ export default function BurgerIngredients() {
         }
     };
 
-    const changeCurrent = (value) =>{
+    const changeCurrent = (value: TItemValue) =>{
         setCurrent(value);
         switch (value){
             case 'bun':
-                bunsRef.current.scrollIntoView({behavior: 'smooth'});
+                if (bunsRef.current) {
+                    bunsRef.current.scrollIntoView({behavior: 'smooth'});
+                }
                 break;
             case 'sauce':
-                saucesRef.current.scrollIntoView({behavior: 'smooth'});
+                if (saucesRef.current) {
+                    saucesRef.current.scrollIntoView({behavior: 'smooth'});
+                }
                 break;
             case 'main':
-                mainsRef.current.scrollIntoView({behavior: 'smooth'});
+                if (mainsRef.current) {
+                    mainsRef.current.scrollIntoView({behavior: 'smooth'});
+                }
                 break;
             default:
                 break;
@@ -63,19 +70,19 @@ export default function BurgerIngredients() {
                 <div className={burgerIngredientsStyle.scrollArea} onScroll={handleScroll}>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10 mb-6'} ref={bunsRef}>Булки</h2>
                     <div className={burgerIngredientsStyle.content}>
-                        {buns.map(item => {
+                        {buns.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>)
                         })}
                     </div>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10 mb-6'} ref={saucesRef}>Соусы</h2>
                     <div className={burgerIngredientsStyle.content}>
-                        {sauces.map(item => {
+                        {sauces.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>)
                         })}
                     </div>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10'} ref={mainsRef}>Начинки</h2>
                     <div className={burgerIngredientsStyle.content}>
-                        {mains.map(item => {
+                        {mains.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>);
                         })}
                     </div>

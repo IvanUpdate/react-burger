@@ -11,14 +11,14 @@ export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const isLogin = useSelector((store) => store.auth.isLogin);
+    const isLogin = useSelector((store:any) => store.auth.isLogin);
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const register = (e) => {
+    const register = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(registerRequest(email, password, name));
+        dispatch(registerRequest({email, password, name}));
         history.replace('/login');
     };
 
