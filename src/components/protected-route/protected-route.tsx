@@ -1,16 +1,21 @@
-import React from "react";
+import React, {FC} from "react";
 import { Route, Redirect, useLocation } from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getUser } from "../../services/actions/auth";
 
+interface IProtectedRoute {
+    path: string;
+    exact?: boolean;
+    rest?: any;
+}
 
-export function ProtectedRoute({children, ...rest}) {
+export const  ProtectedRoute: FC<IProtectedRoute> =({children, ...rest}) => {
 
     const dispatch = useDispatch();
     const location = useLocation();
     const [isUserLoaded, setUserLoaded] = useState(false);
-    const isLogin = useSelector((store)=> store.auth.isLogin);
+    const isLogin = useSelector((store:any)=> store.auth.isLogin);
 
     const init = async () => {
         await getUser();
@@ -42,4 +47,4 @@ export function ProtectedRoute({children, ...rest}) {
         />
     );
 
-}
+};

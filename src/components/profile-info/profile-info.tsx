@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from './profile-info.module.css';
-import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {updateUser} from "../../services/actions/auth";
 
 export const ProfileInfo = () => {
 
     const dispatch = useDispatch();
 
-    const {user} = useSelector((store) => store.auth);
+    const {user} = useSelector((store: any) => store.auth);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,12 +18,12 @@ export const ProfileInfo = () => {
     const [emailDisabled, setEmailDisabled] = useState(true);
     const [passwordDisabled, setPasswordDisabled] = useState(true);
 
-    const update = (e) => {
+    const update = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(updateUser(name || user.name, email || user.email, password));
+        dispatch(updateUser({name:(name || user.name), email: (email || user.email), password: password}));
     };
 
-    const returnInfo = (e) =>{
+    const returnInfo = (e: React.MouseEvent<HTMLButtonElement>) =>{
         e.preventDefault();
         setName(user.name);
         setEmail(user.email);
@@ -72,7 +72,7 @@ export const ProfileInfo = () => {
                 size={'default'}
             />
             <div className={styles.buttons+' pt-5'}>
-                <button type={onsubmit} className={styles.button}>Сохранить</button>
+                <button type='submit' className={styles.button}>Сохранить</button>
                 <button className={styles.button} onClick={returnInfo}>Отмена</button>
             </div>
         </form>) : null);

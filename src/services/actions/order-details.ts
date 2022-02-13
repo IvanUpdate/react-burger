@@ -1,11 +1,13 @@
 import {BASE_URL} from "../../http";
+import {TItem} from "../../types";
 
 export const GET_ORDER = 'GET_ORDER';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const GET_ORDER_ERROR = 'GET_ORDER_ERROR';
 
-export function getOrder(ingredients) {
-    return function (dispatch) {
+
+export function getOrder(ingredients:Array<TItem>) {
+    return function (dispatch:any) {
         dispatch({
             type: GET_ORDER
         });

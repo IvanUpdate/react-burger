@@ -8,16 +8,16 @@ import {updatePassword} from "../services/actions/auth";
 export const ResetPassword = () => {
 
     const history = useHistory();
-    const isLogin = useSelector((store) => store.auth.isLogin);
+    const isLogin = useSelector((store:any) => store.auth.isLogin);
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
-    const isUpdate = useSelector((store) => store.auth.updatePasswordApproved);
-    const isReset = useSelector((store) => store.auth.resetPasswordApproved);
+    const isUpdate = useSelector((store:any) => store.auth.updatePasswordApproved);
+    const isReset = useSelector((store:any) => store.auth.resetPasswordApproved);
     const dispatch = useDispatch();
 
-    const save = (e) => {
+    const save = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(updatePassword(password, token));
+        dispatch(updatePassword({password, token}));
     };
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export const ResetPassword = () => {
         <div className={styles.main}>
             <h1 className={styles.title + ' mb-6'}>Восстановление пароля</h1>
             <form className={styles.inputs} onSubmit={save}>
-                <Input className={styles.inputs} placeholder="Введите новый пароль" value={password} name={'password'}
+                <Input placeholder="Введите новый пароль" value={password} name={'password'}
                        size={'default'}
                        onChange={(e) => {
                            setPassword(e.target.value)

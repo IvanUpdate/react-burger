@@ -1,41 +1,38 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {useDrop} from "react-dnd";
-import uuid from 'react-uuid';
+import {v4 as uuidv4} from 'uuid';
 import burgerConstructorStyles from './burger-constructor.module.css';
 import {
     CurrencyIcon,
     Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import Modal from "../modal/modal";
 import OrderDetails from '../order-details/order-details';
 import BurgerIngredient from "./burger-constructor-ingredient/burger-constructor-ingredient";
-import ingredientType from "../../utils/ingredient-type";
+import {TItem} from "../../types";
 import {getOrder} from "../../services/actions/order-details";
 import {addingItem} from "../../services/actions/burger-constructor";
 import {
-    ADD_ITEM,
     INIT_NEW_CART,
     ADD_BUNS,
     REMOVE_BUNS,
 } from "../../services/actions/burger-constructor";
 
-
 export default function BurgerConstructor() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const orderIngredients = useSelector(state => state.constructor.ingredients);
-    const count = useSelector(state => state.constructor.count);
+    const orderIngredients = useSelector((state: any) => state.constructor.ingredients);
+    const count = useSelector((state: any) => state.constructor.count);
     const [modal, setModal] = useState(false);
-    const price = useSelector(state => state.constructor.totalPrice);
-    const bunsArray = useSelector(state => state.constructor.bunsArray);
-    const isBunInOrder = useSelector(state => state.constructor.isBunInOrder);
-    const isLogin = useSelector((store) => store.auth.isLogin);
+    const price = useSelector((state: any) => state.constructor.totalPrice);
+    const bunsArray = useSelector((state: any) => state.constructor.bunsArray);
+    const isBunInOrder = useSelector((state: any) => state.constructor.isBunInOrder);
+    const isLogin = useSelector((state: any) => state.auth.isLogin);
 
-    const onDropHandler = (itemId) => {
+    const onDropHandler = (itemId:TItem) => {
         if (itemId.type === 'bun') {
             if (isBunInOrder) {
                 dispatch({
@@ -53,14 +50,14 @@ export default function BurgerConstructor() {
 
     const [, dropTarget] = useDrop({
         accept: 'ingredient',
-        drop: function (itemId) {
+        drop: function (itemId:TItem) {
             onDropHandler(itemId);
         },
     });
 
     const [, dropTargetFirst] = useDrop({
         accept: 'ingredient',
-        drop(itemId) {
+        drop(itemId: TItem) {
             onDropHandler(itemId);
         },
     });
@@ -90,10 +87,10 @@ export default function BurgerConstructor() {
                 <div className={burgerConstructorStyles.main + ' pt-25'} ref={dropTarget}>
                     {isBunInOrder && <BurgerIngredient item={bunsArray[0]} layout='top'/>}
                     <div className={burgerConstructorStyles.scrollArea} ref={drop}>
-                        {orderIngredients && orderIngredients.map((item, index) => {
+                        {orderIngredients && orderIngredients.map((item:TItem, index:number) => {
                             if (item.type !== 'bun') {
                                 return (
-                                    <BurgerIngredient item={item} index={index} key={item.uuid}/>
+                                    <BurgerIngredient item={item} index={index} key={uuidv4()}/>
                                 )
                             }
                         })}
@@ -123,6 +120,3 @@ export default function BurgerConstructor() {
     }
 }
 
-BurgerConstructor.propTypes = {
-    orderIngredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)),
-};

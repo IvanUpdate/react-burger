@@ -4,26 +4,26 @@ import styles from './login.module.css';
 import {EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {loginRequest} from "../services/actions/auth";
+import  {History} from 'history';
 
 export const Login = () => {
 
-    const history = useHistory();
+    const history = useHistory<History & {from: {pathname: string}}>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const isLogin = useSelector((store) => store.auth.isLogin);
+    const isLogin = useSelector((store:any) => store.auth.isLogin);
 
     const dispatch = useDispatch();
 
-    const login = (e) => {
+    const login = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(loginRequest(email, password));
+        dispatch(loginRequest({email, password}));
     };
 
     if (isLogin) {
-        console.log(history.location);
         return (
             <Redirect
-                to={history.location.state?.from.pathname || './'}
+                to={history.location.state?.from.pathname || '/'}
             />
         );
     }

@@ -2,11 +2,10 @@ import React from "react";
 import {useSelector} from "react-redux";
 import orderStyles from './order-details.module.css';
 import image from '../../images/done.png';
-import PropTypes from "prop-types";
 
 const OrderDetails = () => {
 
-    const orderNumber = useSelector(state => state.order.orderInfo.order.number);
+    const orderNumber = useSelector((state:any) => state.order.orderInfo.order.number);
 
     return (
         <div className={orderStyles.main}>

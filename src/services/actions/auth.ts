@@ -1,4 +1,5 @@
 import AuthService from "../auth";
+import {TUserRequest, TLoginRequest, TResetPassword, TUpdatePassword} from "../../types";
 
 export const REGISTER_USER = 'REGISTER_USER';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
@@ -26,7 +27,7 @@ export const GET_USER_ERROR = 'GET_USER_ERROR';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 
 
-export const registerRequest = (email, password, name) => async (dispatch) => {
+export const registerRequest = ({email, password, name}:TUserRequest): ((dispatch:any)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: REGISTER_USER
     });
@@ -63,7 +64,7 @@ export const registerRequest = (email, password, name) => async (dispatch) => {
     }
 };
 
-export const loginRequest = (email, password) => async (dispatch) => {
+export const loginRequest = ({email, password}:TLoginRequest):((dispatch:any)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: LOGIN_USER
     });
@@ -73,6 +74,7 @@ export const loginRequest = (email, password) => async (dispatch) => {
 
     try {
         const response = await AuthService.login(email, password);
+        console.log(response);
         localStorage.setItem('token', response.data.accessToken.split('Bearer ')[1]);
         localStorage.setItem('rtoken', response.data.refreshToken);
         if (response.data.success) {
@@ -101,13 +103,13 @@ export const loginRequest = (email, password) => async (dispatch) => {
     }
 };
 
-export const logOut = () => async (dispatch) => {
+export const logOut = ():((dispatch:any)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: LOGOUT_USER
     });
 
     try {
-        const token = localStorage.getItem('rtoken');
+        const token = localStorage.getItem('rtoken')!;
         const response = await AuthService.logout(token);
         localStorage.removeItem('token');
         localStorage.removeItem('rtoken');
@@ -121,7 +123,7 @@ export const logOut = () => async (dispatch) => {
     }
 };
 
-export const resetPassword = (email) => async (dispatch) => {
+export const resetPassword = ({email}:TResetPassword):(dispatch:any)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: RESET_PASSWORD
     });
@@ -144,7 +146,7 @@ export const resetPassword = (email) => async (dispatch) => {
     }
 };
 
-export const updatePassword = (password, token) => async (dispatch) => {
+export const updatePassword = ({password, token}:TUpdatePassword):(dispatch:any)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: UPDATE_PASSWORD
     });
@@ -168,7 +170,7 @@ export const updatePassword = (password, token) => async (dispatch) => {
     }
 };
 
-export const getUser = () => async (dispatch) => {
+export const getUser = ():((dispatch:any)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: GET_USER
     });
@@ -192,7 +194,7 @@ export const getUser = () => async (dispatch) => {
     }
 };
 
-export const updateUser = (name, email, password) => async (dispatch) => {
+export const updateUser = ({name, email, password}:TUserRequest):(dispatch:any)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: UPDATE_USER
     });

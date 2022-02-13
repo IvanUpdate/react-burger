@@ -1,17 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, FC} from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerTabStyles from './burger-tab.module.css'
-import PropTypes from "prop-types";
+import {TItemValue} from "../../../types";
+
+interface ITabPoint {
+    current: string;
+    changeCurrent: (value: TItemValue) => void;
+}
 
 
-export default function TabPoint({current, changeCurrent}) {
+const TabPoint: FC<ITabPoint> =({current, changeCurrent}) => {
     const [currentValue, setCurrentValue] = useState('bun');
 
     useEffect(() => {
         setCurrentValue(current);
     }, [current]);
 
-    const handleClickHeader = (value) => {
+    const handleClickHeader = (value: TItemValue) => {
         changeCurrent(value);
     };
 
@@ -30,6 +35,5 @@ export default function TabPoint({current, changeCurrent}) {
     )
   }
 
-TabPoint.propTypes = {
-    current: PropTypes.string.isRequired
-};
+  export default TabPoint;
+
