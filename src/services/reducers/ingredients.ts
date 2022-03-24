@@ -2,7 +2,16 @@ import {
     GET_INGREDIENTS,
     GET_INGREDIENTS_SUCCESS,
     GET_INGREDIENTS_ERROR
-} from '../actions/ingredients';
+} from '../constants';
+
+import {IIngredientsActions} from "../actions/ingredients";
+import {TItem} from "../../types";
+
+type TState = {
+    ingredientsRequest: boolean,
+    ingredientsFailed: boolean,
+    ingredients: Array<TItem>
+}
 
 const initialState = {
     ingredientsRequest: false,
@@ -10,7 +19,7 @@ const initialState = {
     ingredients: []
 };
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action: IIngredientsActions):TState => {
     switch (action.type) {
         case GET_INGREDIENTS: {
             return {

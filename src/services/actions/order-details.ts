@@ -1,10 +1,28 @@
 import {BASE_URL} from "../../http";
 import {TItem} from "../../types";
 
-export const GET_ORDER = 'GET_ORDER';
-export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
-export const GET_ORDER_ERROR = 'GET_ORDER_ERROR';
+import {
+    GET_ORDER_ERROR,
+    GET_ORDER,
+    GET_ORDER_SUCCESS,
+} from "../constants";
 
+export interface IGetOrder {
+    readonly type: typeof GET_ORDER;
+}
+
+export interface IGetOrderSuccess {
+    readonly type: typeof GET_ORDER_SUCCESS;
+    readonly payload: {order: {number: number}};
+}
+
+export interface IGetOrderError {
+    readonly type: typeof GET_ORDER_ERROR;
+}
+
+export type IGetOrderActions = IGetOrder |
+    IGetOrderSuccess |
+    IGetOrderError;
 
 export function getOrder(ingredients:Array<TItem>) {
     return function (dispatch:any) {

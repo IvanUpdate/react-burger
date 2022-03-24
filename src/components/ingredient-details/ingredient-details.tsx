@@ -5,7 +5,7 @@ import ingredientStyles from './ingredient.details.module.css';
 const IngredientDetails = () => {
     const item = useSelector((state: any) => state.ingredient.item);
 
-    return (
+    return (item &&
         <div className={ingredientStyles.main}>
             <img className={ingredientStyles.image} src={item.image} alt=''/>
             <div className={ingredientStyles.name+ ' mt-4'}>{item.name}</div>

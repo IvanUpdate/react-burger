@@ -1,3 +1,14 @@
+import { store } from '../services/store';
+import { Action, ActionCreator } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { TApplicationActions} from "../services/actions";
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TApplicationActions>
+    >;
+export type AppDispatch = typeof store.dispatch;
+
 export type TItem = {
     _id: string,
     name: string,
@@ -33,5 +44,22 @@ export type TResetPassword = {
 export type TUpdatePassword = {
     password: string;
     token: string;
+}
+
+export type TOrder = {
+    ingredients: string[];
+    _id: string;
+    status: string;
+    number: number;
+    createdAt: string;
+    updatedAt: string;
+    name:string;
+}
+
+export type TFeedData = {
+    success: boolean;
+    orders: TOrder[];
+    total: number;
+    totalToday: number;
 }
 

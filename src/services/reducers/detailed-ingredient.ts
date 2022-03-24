@@ -2,14 +2,22 @@ import {
     SET_INGREDIENT,
     DELETE_INGREDIENT,
     INIT_INGREDIENT
-} from '../actions/detailed-ingredient';
+} from '../constants';
+
+import {TIngredientAction} from "../actions/detailed-ingredient";
+import {TItem} from "../../types";
+
+type TState = {
+    item: null | TItem;
+    show?: boolean
+}
 
 const initialState = {
-    item: {},
+    item: null,
     show: false
 };
 
-export const ingredientReducer = (state = initialState, action) => {
+export const ingredientReducer = (state = initialState, action: TIngredientAction):TState => {
     switch (action.type) {
         case SET_INGREDIENT: {
             return {
@@ -20,12 +28,12 @@ export const ingredientReducer = (state = initialState, action) => {
         case DELETE_INGREDIENT: {
             return {
                 ...state,
-                item: {}
+                item: null
             };
         }
         case INIT_INGREDIENT: {
             return {
-                item: {},
+                item: null,
                 show: false
             };
         }

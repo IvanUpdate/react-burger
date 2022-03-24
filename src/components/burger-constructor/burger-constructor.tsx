@@ -18,7 +18,7 @@ import {
     INIT_NEW_CART,
     ADD_BUNS,
     REMOVE_BUNS,
-} from "../../services/actions/burger-constructor";
+} from "../../services/constants";
 
 export default function BurgerConstructor() {
 

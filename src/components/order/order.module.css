@@ -1,0 +1,81 @@
+.main {
+    color: #F2F2F3;
+    background: #1C1C21;
+    border-radius: 40px;
+    max-height: 620px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderNumber {
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 24px;
+}
+
+.image {
+    border: 2px solid #4C4CFF;
+    width: 64px;
+    height: 64px;
+    background: #131316;
+    border-radius: 50%;
+    margin-right: -24px;
+}
+
+.date {
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #8585AD;
+}
+
+.title {
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    color: #F2F2F3;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.currency {
+    display: flex;
+    align-items: center;
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 24px;
+    color: #F2F2F3;
+}
+.gallery {
+    display: flex;
+    align-items: center;
+}
+
+.status {
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00CCCC;
+}

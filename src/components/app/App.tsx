@@ -21,11 +21,20 @@ import Modal from '../modal/modal';
 import {deleteIngredient, initIngredient} from "../../services/actions/detailed-ingredient";
 import {getUser} from "../../services/actions/auth";
 import {LayoutCenterIngredient} from "../layout-center-ingredient/layout-center-ingredient";
+import {Feed} from "../../pages/feed";
+import {FeedId} from "../../pages/feed-id";
+import {LayoutCenterFeedId} from "../order/feed-center";
+import {LayoutCenterFeedIdHistory} from "../order/feed-center-history";
+import {FeedIdHistory} from "../../pages/feed-id-history";
 
 
 interface ILocationParams {
     pathname: string;
-    state: {background: ILocationParams};
+    state: {
+        background: ILocationParams;
+        from?: string;
+    };
+    from?: string;
     search: string;
     hash: string;
     key: string;
@@ -52,6 +61,10 @@ function App() {
         history.replace('/');
     };
 
+    const closeOrder = () => {
+        history.replace({ pathname: location.state.from });
+    };
+
     return (
         <div className={styles.App}>
             <AppHeader/>
@@ -76,12 +89,24 @@ function App() {
                 <Route path='/reset-password' exact={true}>
                     <ResetPassword/>
                 </Route>
-                <ProtectedRoute path='/profile'>
+                <ProtectedRoute path='/profile' exact={true}>
                     <Profile/>
                 </ProtectedRoute>
                 <Route path={'/ingredients/:id'} exact={true}>
                     <LayoutCenterIngredient/>
                 </Route>
+                <Route path={'/feed'} exact={true}>
+                    <Feed/>
+                </Route>
+                <Route path={'/feed/:id'} exact={true}>
+                    <LayoutCenterFeedId />
+                </Route>
+                <ProtectedRoute path='/profile/orders' exact={true}>
+                    <Profile />
+                </ProtectedRoute>
+                <ProtectedRoute path={'/profile/orders/:id'} exact={true}>
+                    <LayoutCenterFeedIdHistory />
+                </ProtectedRoute>
                 <Route>
                     <NotFound404/>
                 </Route>
@@ -91,6 +116,20 @@ function App() {
                     closeIngredientInfo()
                 }}>
                     <IngredientPage/>
+                </Modal>}
+            />}
+            {background && location.state.from === '/feed' && <Route path='/feed/:id' children=
+                {<Modal title='' closeTheWindow={() => {
+                    closeOrder();
+                }}>
+                    <FeedId />
+                </Modal>}
+            />}
+            {background && location.state.from === '/profile/orders' && <Route path='/profile/orders/:id' children=
+                {<Modal title='' closeTheWindow={() => {
+                    closeOrder();
+                }}>
+                    <FeedIdHistory />
                 </Modal>}
             />}
         </div>

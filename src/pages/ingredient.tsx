@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useParams} from 'react-router-dom';
 import IngredientDetails from '../components/ingredient-details/ingredient-details';
 import {useDispatch, useSelector} from "react-redux";
-import {SET_INGREDIENT} from "../services/actions/detailed-ingredient";
+import {SET_INGREDIENT} from "../services/constants";
 import {TItem} from "../types";
 
 export const IngredientPage = () => {

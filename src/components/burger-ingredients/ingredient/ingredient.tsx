@@ -7,7 +7,7 @@ import ingredientStyles from './ingredient.module.css';
 import {
     DELETE_INGREDIENT,
     SET_INGREDIENT
-} from "../../../services/actions/detailed-ingredient";
+} from "../../../services/constants";
 import {TItem} from "../../../types";
 
 interface TItemObject {

@@ -1,8 +1,29 @@
 import {BASE_URL} from "../../http";
 
-export const GET_INGREDIENTS = 'GET_INGREDIENTS';
-export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
-export const GET_INGREDIENTS_ERROR = 'GET_INGREDIENTS_ERROR';
+import {
+    GET_INGREDIENTS_SUCCESS,
+    GET_INGREDIENTS_ERROR,
+    GET_INGREDIENTS,
+} from "../constants";
+
+import {TItem} from "../../types";
+
+export interface IGetIngredients {
+    readonly type: typeof GET_INGREDIENTS;
+}
+
+export interface IGetIngredientsError {
+    readonly type: typeof GET_INGREDIENTS_ERROR;
+}
+
+export interface IGetIngredientsSuccess {
+    readonly type: typeof GET_INGREDIENTS_SUCCESS;
+    readonly ingredients: Array<TItem>
+}
+
+export type IIngredientsActions = IGetIngredients |
+    IGetIngredientsError |
+    IGetIngredientsSuccess;
 
 export function getIngredients() {
     return function (dispatch:any) {

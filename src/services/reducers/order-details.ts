@@ -1,6 +1,14 @@
 import {
     GET_ORDER, GET_ORDER_ERROR, GET_ORDER_SUCCESS
-} from "../actions/order-details";
+} from "../constants";
+
+import {IGetOrderActions} from "../actions/order-details";
+
+type TState = {
+    orderRequest: boolean,
+    orderFailed: boolean,
+    orderInfo?: {order: {number: number}}
+}
 
 const initialState = {
     orderRequest: false,
@@ -8,7 +16,7 @@ const initialState = {
     orderInfo: {order: {number: 0}}
 };
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action:IGetOrderActions): TState => {
     switch (action.type) {
         case GET_ORDER: {
             return {
