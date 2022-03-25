@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../../services/hooks";
 import {useDrag} from "react-dnd";
 import {Link, useLocation } from "react-router-dom";
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";

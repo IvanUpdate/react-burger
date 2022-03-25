@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Route, Switch, useLocation, useHistory} from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../services/hooks";
 import {getIngredients} from "../../services/actions/ingredients";
 import styles from './App.module.css';
 import AppHeader from '../app-header/app-header';

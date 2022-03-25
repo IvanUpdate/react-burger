@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './forgot-password.module.css';
 import {EmailInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {resetPassword} from "../services/actions/auth";
 
 export const ForgotPassword = () => {

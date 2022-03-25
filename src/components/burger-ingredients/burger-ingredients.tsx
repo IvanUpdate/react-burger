@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {useSelector} from 'react-redux';
+import {useSelector} from '../../services/hooks';
 import burgerIngredientsStyle from './burger-ingredients.module.css';
 import TabPoint from "./burger-tab/burger-tab";
 import Ingredient from "./ingredient/ingredient";

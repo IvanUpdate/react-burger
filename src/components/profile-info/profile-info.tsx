@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 import styles from './profile-info.module.css';
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {updateUser} from "../../services/actions/auth";

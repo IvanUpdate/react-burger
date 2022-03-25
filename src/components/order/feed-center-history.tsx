@@ -6,7 +6,7 @@ import {
     wsConnectionStartAuth
 } from "../../services/actions/websocket";
 import {URL_WS} from "../../services/constants";
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../services/hooks";
 import {FeedIdHistory} from "../../pages/feed-id-history";
 
 

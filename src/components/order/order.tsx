@@ -4,7 +4,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import {Link, useLocation} from "react-router-dom";
 import {TItem, TOrder} from "../../types";
 import {formatData} from "../../utils/date";
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/hooks";
 import {price} from "../../utils/price";
 import {status} from "../../utils/order-status";
 

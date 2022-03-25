@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 import {useHistory} from 'react-router-dom';
 import {useDrop} from "react-dnd";
 import {v4 as uuidv4} from 'uuid';
@@ -17,7 +17,7 @@ import {addingItem} from "../../services/actions/burger-constructor";
 import {
     INIT_NEW_CART,
     ADD_BUNS,
-    REMOVE_BUNS,
+    REMOVE_BUNS, CLOSE_ORDER,
 } from "../../services/constants";
 
 export default function BurgerConstructor() {
@@ -111,6 +111,9 @@ export default function BurgerConstructor() {
                         setModal(false);
                         dispatch({
                             type: INIT_NEW_CART,
+                        });
+                        dispatch({
+                            type: CLOSE_ORDER,
                         });
                     }}>
                         <OrderDetails/>

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from './order-list.module.css';
 import {Order} from "./order";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 import {TOrder} from "../../types";
 import {
     wsConnectionClosedAuth,

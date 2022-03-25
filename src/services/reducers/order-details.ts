@@ -1,5 +1,5 @@
 import {
-    GET_ORDER, GET_ORDER_ERROR, GET_ORDER_SUCCESS
+    GET_ORDER, GET_ORDER_ERROR, GET_ORDER_SUCCESS, CLOSE_ORDER
 } from "../constants";
 
 import {IGetOrderActions} from "../actions/order-details";
@@ -7,13 +7,13 @@ import {IGetOrderActions} from "../actions/order-details";
 type TState = {
     orderRequest: boolean,
     orderFailed: boolean,
-    orderInfo?: {order: {number: number}}
+    orderInfo?: {order: {number: number | null}}
 }
 
 const initialState = {
     orderRequest: false,
     orderFailed: false,
-    orderInfo: {order: {number: 0}}
+    orderInfo: {order: {number: null}}
 };
 
 export const orderReducer = (state = initialState, action:IGetOrderActions): TState => {
@@ -35,6 +35,14 @@ export const orderReducer = (state = initialState, action:IGetOrderActions): TSt
         case GET_ORDER_ERROR: {
             return {
                 ...state,
+                orderRequest: false,
+                orderFailed: true
+            };
+        }
+        case CLOSE_ORDER: {
+            return {
+                ...state,
+                orderInfo: {order: {number: null}},
                 orderRequest: false,
                 orderFailed: true
             };

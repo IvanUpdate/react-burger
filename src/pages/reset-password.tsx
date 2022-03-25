@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './reset-password.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {updatePassword} from "../services/actions/auth";
 
 export const ResetPassword = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/hooks";
 import orderStyles from './order-details.module.css';
 import image from '../../images/done.png';
 

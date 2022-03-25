@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './login.module.css';
 import {EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {loginRequest} from "../services/actions/auth";
 import  {History} from 'history';
 

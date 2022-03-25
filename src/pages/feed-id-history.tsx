@@ -3,7 +3,7 @@ import styles from './feed-id-history.module.css';
 import {OrderInfo} from "../components/order/order-info";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector} from "../services/hooks";
 import {TOrder} from "../types";
 import {TItem} from "../types";
 import {formatData} from "../utils/date";

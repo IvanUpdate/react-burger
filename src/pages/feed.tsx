@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './feed.module.css';
 import {useEffect} from 'react';
 import {Order} from "../components/order/order";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {wsConnectionStart, wsConnectionClosed} from "../services/actions/websocket";
 import {URL_WS} from '../services/constants';
 import {TOrder} from "../types";
@@ -13,7 +13,7 @@ export const Feed = () => {
     const {feed, feedGet} = useSelector((state: any)=>state.ws);
 
     useEffect(() => {
-        dispatch(wsConnectionStart(URL_WS));
+        dispatch(wsConnectionStart(URL_WS+'/all'));
         return () => {
             dispatch(wsConnectionClosed());
         }

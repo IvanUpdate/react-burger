@@ -6,7 +6,7 @@ import {
     wsConnectionStart,
 } from "../../services/actions/websocket";
 import {URL_WS} from "../../services/constants";
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../services/hooks";
 
 
 
@@ -14,7 +14,7 @@ export const LayoutCenterFeedId  = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(wsConnectionStart(URL_WS));
+        dispatch(wsConnectionStart(URL_WS+'/all'));
         return () => {
             dispatch(wsConnectionClosed());
         }

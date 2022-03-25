@@ -6,7 +6,7 @@ import {
     GET_INGREDIENTS,
 } from "../constants";
 
-import {TItem} from "../../types";
+import {AppThunk, TItem} from "../../types";
 
 export interface IGetIngredients {
     readonly type: typeof GET_INGREDIENTS;
@@ -25,7 +25,7 @@ export type IIngredientsActions = IGetIngredients |
     IGetIngredientsError |
     IGetIngredientsSuccess;
 
-export function getIngredients() {
+export const getIngredients:AppThunk = () => {
     return function (dispatch:any) {
         dispatch({
             type: GET_INGREDIENTS

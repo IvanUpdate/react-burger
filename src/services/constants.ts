@@ -41,8 +41,9 @@ const GET_INGREDIENTS_ERROR = 'GET_INGREDIENTS_ERROR' as const;
 const GET_ORDER = 'GET_ORDER' as const;
 const GET_ORDER_ERROR = 'GET_ORDER_ERROR' as const;
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS' as const;
+const CLOSE_ORDER = 'CLOSE_ORDER' as const;
 
-export const URL_WS = "wss://norma.nomoreparties.space/orders/all";
+export const URL_WS = "wss://norma.nomoreparties.space/orders";
 
 export {
     REGISTER_USER_SUCCESS,
@@ -83,5 +84,6 @@ export {
     GET_INGREDIENTS_SUCCESS,
     GET_ORDER_SUCCESS,
     GET_ORDER,
-    GET_ORDER_ERROR
+    GET_ORDER_ERROR,
+    CLOSE_ORDER
 }

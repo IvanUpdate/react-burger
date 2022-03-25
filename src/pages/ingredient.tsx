@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useParams} from 'react-router-dom';
 import IngredientDetails from '../components/ingredient-details/ingredient-details';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {SET_INGREDIENT} from "../services/constants";
 import {TItem} from "../types";
 
