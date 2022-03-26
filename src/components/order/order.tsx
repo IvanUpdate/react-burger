@@ -17,7 +17,7 @@ export const Order:React.FC<IOrderProps> = ({order, order_history}) => {
     const location = useLocation();
     const link = location.pathname === "/profile/orders" ? 'profile/orders' : 'feed';
     const date = formatData(order.createdAt);
-    const {ingredients, ingredientsRequest} = useSelector((state:any) => state.ingredients);
+    const {ingredients, ingredientsRequest} = useSelector((state) => state.ingredients);
 
     const pics = (element_ids:string[], items: TItem[]) => {
         const images: string[] = [];

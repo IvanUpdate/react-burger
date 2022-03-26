@@ -25,12 +25,12 @@ export default function BurgerConstructor() {
     const dispatch = useDispatch();
     const history = useHistory();
     const orderIngredients = useSelector((state: any) => state.constructor.ingredients);
-    const count = useSelector((state: any) => state.constructor.count);
+    const {count} = useSelector((state) => state.constructor);
     const [modal, setModal] = useState(false);
-    const price = useSelector((state: any) => state.constructor.totalPrice);
-    const bunsArray = useSelector((state: any) => state.constructor.bunsArray);
-    const isBunInOrder = useSelector((state: any) => state.constructor.isBunInOrder);
-    const isLogin = useSelector((state: any) => state.auth.isLogin);
+    const {totalPrice} = useSelector((state) => state.constructor);
+    const {bunsArray} = useSelector((state) => state.constructor);
+    const {isBunInOrder} = useSelector((state) => state.constructor);
+    const {isLogin} = useSelector((state) => state.auth);
 
     const onDropHandler = (itemId:TItem) => {
         if (itemId.type === 'bun') {
@@ -97,7 +97,7 @@ export default function BurgerConstructor() {
                     </div>
                     {isBunInOrder && <BurgerIngredient item={bunsArray[1]} layout='bottom'/>}
                     <div className={burgerConstructorStyles.total + ' mt-10'}>
-                        <span className={burgerConstructorStyles.price + ' mr-10'}>{price}<CurrencyIcon
+                        <span className={burgerConstructorStyles.price + ' mr-10'}>{totalPrice}<CurrencyIcon
                             type="primary"/></span>
                         {isBunInOrder && <Button type="primary" size="medium" onClick={() => {
                             handleOrder();

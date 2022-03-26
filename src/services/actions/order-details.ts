@@ -1,5 +1,5 @@
 import {BASE_URL} from "../../http";
-import {AppThunk, TItem} from "../../types";
+import {AppThunk, TItem, AppDispatch} from "../../types";
 
 import {
     GET_ORDER_ERROR,
@@ -31,7 +31,7 @@ export type IGetOrderActions = IGetOrder |
     ICloseOrder;
 
 export const getOrder:AppThunk = (ingredients:Array<TItem>) => {
-    return function (dispatch:any) {
+    return function (dispatch:AppDispatch) {
         dispatch({
             type: CLOSE_ORDER
         });

@@ -11,7 +11,7 @@ export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
+    const {isLogin} = useSelector(store => store.auth);
 
     const dispatch = useDispatch();
     const history = useHistory();

@@ -10,7 +10,7 @@ import {TOrder} from "../types";
 export const Feed = () => {
 
     const dispatch = useDispatch();
-    const {feed, feedGet} = useSelector((state: any)=>state.ws);
+    const {feed, feedGet} = useSelector((state)=>state.ws);
 
     useEffect(() => {
         dispatch(wsConnectionStart(URL_WS+'/all'));

@@ -1,4 +1,5 @@
 import {BASE_URL} from "../../http";
+import {AppDispatch} from "../../types";
 
 import {
     GET_INGREDIENTS_SUCCESS,
@@ -26,7 +27,7 @@ export type IIngredientsActions = IGetIngredients |
     IGetIngredientsSuccess;
 
 export const getIngredients:AppThunk = () => {
-    return function (dispatch:any) {
+    return function (dispatch:AppDispatch) {
         dispatch({
             type: GET_INGREDIENTS
         });

@@ -1,5 +1,5 @@
 import AuthService from "../auth";
-import {TUserRequest, TLoginRequest, TResetPassword, TUpdatePassword, AppThunk} from "../../types";
+import {TUserRequest, TLoginRequest, TResetPassword, TUpdatePassword, AppThunk, AppDispatch} from "../../types";
 
 import {
     REGISTER_USER,
@@ -167,7 +167,7 @@ export type TUserActions =
     ILogoutUserError |
     ILogoutUserSuccess;
 
-export const registerRequest:AppThunk = ({email, password, name}:TUserRequest): ((dispatch:any)=>Promise<void>) => async (dispatch) => {
+export const registerRequest:AppThunk = ({email, password, name}:TUserRequest): ((dispatch:AppDispatch)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: REGISTER_USER
     });
@@ -204,7 +204,7 @@ export const registerRequest:AppThunk = ({email, password, name}:TUserRequest): 
     }
 };
 
-export const loginRequest:AppThunk = ({email, password}:TLoginRequest):((dispatch:any)=>Promise<void>) => async (dispatch) => {
+export const loginRequest:AppThunk = ({email, password}:TLoginRequest):((dispatch:AppDispatch)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: LOGIN_USER
     });
@@ -243,7 +243,7 @@ export const loginRequest:AppThunk = ({email, password}:TLoginRequest):((dispatc
     }
 };
 
-export const logOut:AppThunk = ():((dispatch:any)=>Promise<void>) => async (dispatch) => {
+export const logOut:AppThunk = ():((dispatch:AppDispatch)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: LOGOUT_USER
     });
@@ -263,7 +263,7 @@ export const logOut:AppThunk = ():((dispatch:any)=>Promise<void>) => async (disp
     }
 };
 
-export const resetPassword:AppThunk = ({email}:TResetPassword):(dispatch:any)=>Promise<void> => async (dispatch) => {
+export const resetPassword:AppThunk = ({email}:TResetPassword):(dispatch:AppDispatch)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: RESET_PASSWORD
     });
@@ -286,7 +286,7 @@ export const resetPassword:AppThunk = ({email}:TResetPassword):(dispatch:any)=>P
     }
 };
 
-export const updatePassword:AppThunk = ({password, token}:TUpdatePassword):(dispatch:any)=>Promise<void> => async (dispatch) => {
+export const updatePassword:AppThunk = ({password, token}:TUpdatePassword):(dispatch:AppDispatch)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: UPDATE_PASSWORD
     });
@@ -310,7 +310,7 @@ export const updatePassword:AppThunk = ({password, token}:TUpdatePassword):(disp
     }
 };
 
-export const getUser:AppThunk = ():((dispatch:any)=>Promise<void>) => async (dispatch) => {
+export const getUser:AppThunk = ():((dispatch:AppDispatch)=>Promise<void>) => async (dispatch) => {
     dispatch({
         type: GET_USER
     });
@@ -334,7 +334,7 @@ export const getUser:AppThunk = ():((dispatch:any)=>Promise<void>) => async (dis
     }
 };
 
-export const updateUser:AppThunk = ({name, email, password}:TUserRequest):(dispatch:any)=>Promise<void> => async (dispatch) => {
+export const updateUser:AppThunk = ({name, email, password}:TUserRequest):(dispatch:AppDispatch)=>Promise<void> => async (dispatch) => {
     dispatch({
         type: UPDATE_USER
     });

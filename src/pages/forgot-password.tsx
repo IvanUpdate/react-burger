@@ -10,8 +10,8 @@ export const ForgotPassword = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
-    const isReset = useSelector((store:any) => store.auth.resetPasswordApproved);
+    const {isLogin} = useSelector((store:any) => store.auth);
+    const {resetPasswordApproved} = useSelector((store:any) => store.auth);
 
     const reset = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,10 +19,10 @@ export const ForgotPassword = () => {
     };
 
     useEffect(() => {
-        if (isReset) {
+        if (resetPasswordApproved) {
             history.replace({pathname: "/reset-password", state: history.location});
         }
-    }, [email, isReset]);
+    }, [email, resetPasswordApproved]);
 
     if (isLogin) {
         return (
