@@ -15,7 +15,7 @@ export const  ProtectedRoute: FC<IProtectedRoute> =({children, ...rest}) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const [isUserLoaded, setUserLoaded] = useState(false);
-    const isLogin = useSelector((store:any)=> store.auth.isLogin);
+    const isLogin = useSelector(store=> store.auth.isLogin);
 
     const init = async () => {
         await getUser();

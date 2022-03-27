@@ -10,8 +10,8 @@ export const ForgotPassword = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    const {isLogin} = useSelector((store:any) => store.auth);
-    const {resetPasswordApproved} = useSelector((store:any) => store.auth);
+    const {isLogin} = useSelector(store=> store.auth);
+    const {resetPasswordApproved} = useSelector(store => store.auth);
 
     const reset = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

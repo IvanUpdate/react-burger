@@ -8,7 +8,7 @@ export const ProfileInfo = () => {
 
     const dispatch = useDispatch();
 
-    const {user} = useSelector((store: any) => store.auth);
+    const {user} = useSelector(store => store.auth);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

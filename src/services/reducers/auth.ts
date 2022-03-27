@@ -31,7 +31,7 @@ import {
 } from '../actions/auth';
 
 type TState = {
-    user: null | {
+    user: {
         name: string;
         email: string;
     };
@@ -48,8 +48,10 @@ type TState = {
     isLogin: boolean;
 }
 
-const initialState = {
-    user: null,
+const initialState: TState = {
+    user: {
+        name: '',
+        email: ''},
     userDataRequest: false,
     userDataFailed: false,
     resetPasswordRequest: false,
@@ -122,7 +124,9 @@ export const authReducer = (state = initialState, action: TUserActions):TState =
         case LOGOUT_USER_SUCCESS: {
             return {
                 ...state,
-                user: null,
+                user: {
+                    name: '',
+                    email: ''},
                 userDataRequest: false,
                 userDataFailed: false,
                 isLogin: false

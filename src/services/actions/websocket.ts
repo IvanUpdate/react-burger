@@ -104,7 +104,7 @@ export const wsGetData = (feed: TFeedData ) => {
     };
 };
 
-export const wsGetDataError = (error:any) => {
+export const wsGetDataError = (error: Event) => {
     return {
         type: WS_GET_DATA_ERROR,
         payload: error
@@ -144,7 +144,7 @@ export const wsGetDataAuth = (feed: TFeedData ) => {
     };
 };
 
-export const wsGetDataErrorAuth = (error:any) => {
+export const wsGetDataErrorAuth = (error: Event) => {
     return {
         type: WS_GET_AUTH_DATA_ERROR,
         payload: error

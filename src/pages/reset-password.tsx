@@ -8,7 +8,7 @@ import {updatePassword} from "../services/actions/auth";
 export const ResetPassword = () => {
 
     const history = useHistory();
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
+    const isLogin = useSelector(store => store.auth.isLogin);
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
     const {updatePasswordApproved} = useSelector(store => store.auth);

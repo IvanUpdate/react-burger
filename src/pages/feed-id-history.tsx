@@ -11,10 +11,10 @@ import {price} from "../utils/price";
 
 export const FeedIdHistory = () => {
 
-    const {orders} = useSelector((state: any)=>state.ws.feed_history) || [];
+    const {orders} = useSelector(state=>state.ws.feed_history) || [];
     const {id} = useParams<{id?:string}>();
     const item = id && orders ? orders.find((el:TOrder) => el._id === id) : null;
-    const {ingredients, ingredientsRequest} = useSelector((state:any) => state.ingredients);
+    const {ingredients, ingredientsRequest} = useSelector(state=> state.ingredients);
 
     const count = (ingredient: string, order: TOrder) =>{
         return order.ingredients.filter((element:string) => ingredient === element).length;

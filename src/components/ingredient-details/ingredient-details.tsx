@@ -3,7 +3,7 @@ import {useSelector} from "../../services/hooks";
 import ingredientStyles from './ingredient.details.module.css';
 
 const IngredientDetails = () => {
-    const {item} = useSelector((state: any) => state.ingredient);
+    const {item} = useSelector(state => state.ingredient);
 
     return (item &&
         <div className={ingredientStyles.main}>

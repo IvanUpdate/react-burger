@@ -7,10 +7,10 @@ import {IGetOrderActions} from "../actions/order-details";
 type TState = {
     orderRequest: boolean,
     orderFailed: boolean,
-    orderInfo?: {order: {number: number | null}}
+    orderInfo: {order: {number: number | null}}
 }
 
-const initialState = {
+const initialState: TState = {
     orderRequest: false,
     orderFailed: false,
     orderInfo: {order: {number: null}}

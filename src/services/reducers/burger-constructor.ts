@@ -18,7 +18,7 @@ type TState = {
     isBunInOrder: boolean;
 }
 
-const initialState = {
+const initialState: TState = {
     ingredients: [],
     count: 0,
     totalPrice: 0,

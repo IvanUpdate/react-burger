@@ -13,7 +13,7 @@ type TState = {
     ingredients: Array<TItem>
 }
 
-const initialState = {
+const initialState: TState = {
     ingredientsRequest: false,
     ingredientsFailed: false,
     ingredients: []

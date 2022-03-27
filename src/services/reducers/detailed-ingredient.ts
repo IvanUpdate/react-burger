@@ -12,7 +12,7 @@ type TState = {
     show?: boolean
 }
 
-const initialState = {
+const initialState: TState = {
     item: null,
     show: false
 };

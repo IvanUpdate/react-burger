@@ -9,7 +9,7 @@ import {TItem, TItemValue} from "../../types";
 
 export default function BurgerIngredients() {
 
-    const {ingredients, ingredientsRequest} = useSelector((state:any) => state.ingredients);
+    const {ingredients, ingredientsRequest} = useSelector(state => state.ingredients);
     const [current, setCurrent] = useState('bun');
 
     const buns = ingredients.filter((item: TItem) => (item.type === 'bun'));

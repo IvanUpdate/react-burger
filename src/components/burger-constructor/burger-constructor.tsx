@@ -24,7 +24,7 @@ export default function BurgerConstructor() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const orderIngredients = useSelector((state: any) => state.constructor.ingredients);
+    const orderIngredients = useSelector(state => state.constructor.ingredients);
     const {count} = useSelector((state) => state.constructor);
     const [modal, setModal] = useState(false);
     const {totalPrice} = useSelector((state) => state.constructor);

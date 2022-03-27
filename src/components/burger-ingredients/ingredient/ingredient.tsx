@@ -18,7 +18,7 @@ const Ingredient: FC<TItemObject> = ({item}) => {
 
     const {image, price, name, _id, type} = item;
 
-    const items = useSelector((state:any) => state.constructor);
+    const items = useSelector(state=> state.constructor);
 
     let qty = type === 'bun' ? items.bunsArray.filter((element: TItem) => element._id === _id).length :
         items.ingredients.filter((element: TItem) => element._id === _id).length;

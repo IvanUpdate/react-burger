@@ -9,7 +9,7 @@ export const IngredientPage = () => {
 
     const {id} = useParams<{id?:string}>();
     const dispatch = useDispatch();
-    const item = useSelector((store: any) => store.ingredients.ingredients.find((el:TItem) => el._id === id));
+    const item = useSelector(store => store.ingredients.ingredients.find((el:TItem) => el._id === id));
 
     const setElement = () => {
         dispatch({

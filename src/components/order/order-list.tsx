@@ -19,7 +19,7 @@ export const OrderList = () => {
         }
     }, [dispatch]);
 
-    const orders = useSelector((state:any)=>state.ws.feed_history?.orders);
+    const orders = useSelector(state=>state.ws.feed_history?.orders);
 
     if(orders) {return(
         <div className={styles.list+' ml-15'}>
