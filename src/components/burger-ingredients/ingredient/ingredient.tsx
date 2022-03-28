@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../../services/hooks";
 import {useDrag} from "react-dnd";
 import {Link, useLocation } from "react-router-dom";
 import {CurrencyIcon, Counter} from "@ya.praktikum/react-developer-burger-ui-components";
@@ -7,7 +7,7 @@ import ingredientStyles from './ingredient.module.css';
 import {
     DELETE_INGREDIENT,
     SET_INGREDIENT
-} from "../../../services/actions/detailed-ingredient";
+} from "../../../services/constants";
 import {TItem} from "../../../types";
 
 interface TItemObject {
@@ -18,7 +18,7 @@ const Ingredient: FC<TItemObject> = ({item}) => {
 
     const {image, price, name, _id, type} = item;
 
-    const items = useSelector((state:any) => state.constructor);
+    const items = useSelector(state=> state.constructor);
 
     let qty = type === 'bun' ? items.bunsArray.filter((element: TItem) => element._id === _id).length :
         items.ingredients.filter((element: TItem) => element._id === _id).length;

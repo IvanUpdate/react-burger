@@ -15,7 +15,7 @@ function AppHeader() {
                         </NavLink>
                     </div>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
-                        <NavLink to='/profile/orders' className={styles.link} activeClassName={styles.linkActive}>
+                        <NavLink to='/feed' className={styles.link} activeClassName={styles.linkActive}>
                             <span><ListIcon type="primary"/></span>
                             <span className='ml-2'>Лента заказов</span>
                         </NavLink>

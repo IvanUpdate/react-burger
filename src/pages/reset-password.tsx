@@ -2,17 +2,17 @@ import React, {useEffect, useState} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './reset-password.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {updatePassword} from "../services/actions/auth";
 
 export const ResetPassword = () => {
 
     const history = useHistory();
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
+    const isLogin = useSelector(store => store.auth.isLogin);
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
-    const isUpdate = useSelector((store:any) => store.auth.updatePasswordApproved);
-    const isReset = useSelector((store:any) => store.auth.resetPasswordApproved);
+    const {updatePasswordApproved} = useSelector(store => store.auth);
+    const resetPasswordApproved = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
     const save = (e:React.FormEvent<HTMLFormElement>) => {
@@ -21,16 +21,16 @@ export const ResetPassword = () => {
     };
 
     useEffect(() => {
-        if (!isReset) {
+        if (!resetPasswordApproved) {
             history.replace({pathname: "/forgot-password"});
         }
-    }, [password, token, isUpdate]);
+    }, [password, token, updatePasswordApproved]);
 
     useEffect(() => {
-        if (isUpdate) {
+        if (updatePasswordApproved) {
             history.replace({pathname: "/login", state: history.location});
         }
-    }, [password, token, isUpdate]);
+    }, [password, token, updatePasswordApproved]);
 
     if (isLogin) {
         return (

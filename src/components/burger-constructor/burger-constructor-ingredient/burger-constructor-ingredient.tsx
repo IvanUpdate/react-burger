@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../../services/hooks";
 import burgerIngredientStyles from './burger-constructor-ingredient.module.css';
 import {useDrag, useDrop} from "react-dnd";
-import {MOVE_ITEMS, REMOVE_ITEM} from "../../../services/actions/burger-constructor";
+import {MOVE_ITEMS, REMOVE_ITEM} from "../../../services/constants";
 import {TItem} from "../../../types";
 
 interface IBurgerIngredientProps {

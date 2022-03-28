@@ -1,0 +1,19 @@
+.list {
+    margin-top: -100px;
+    width: 844px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100vh;
+    min-height: 200px;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+.list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+    background: #2F2F37;
+}

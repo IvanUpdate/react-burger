@@ -1,11 +1,33 @@
 import {BASE_URL} from "../../http";
+import {AppDispatch} from "../../types";
 
-export const GET_INGREDIENTS = 'GET_INGREDIENTS';
-export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
-export const GET_INGREDIENTS_ERROR = 'GET_INGREDIENTS_ERROR';
+import {
+    GET_INGREDIENTS_SUCCESS,
+    GET_INGREDIENTS_ERROR,
+    GET_INGREDIENTS,
+} from "../constants";
 
-export function getIngredients() {
-    return function (dispatch:any) {
+import {AppThunk, TItem} from "../../types";
+
+export interface IGetIngredients {
+    readonly type: typeof GET_INGREDIENTS;
+}
+
+export interface IGetIngredientsError {
+    readonly type: typeof GET_INGREDIENTS_ERROR;
+}
+
+export interface IGetIngredientsSuccess {
+    readonly type: typeof GET_INGREDIENTS_SUCCESS;
+    readonly ingredients: Array<TItem>
+}
+
+export type IIngredientsActions = IGetIngredients |
+    IGetIngredientsError |
+    IGetIngredientsSuccess;
+
+export const getIngredients:AppThunk = () => {
+    return function (dispatch:AppDispatch) {
         dispatch({
             type: GET_INGREDIENTS
         });

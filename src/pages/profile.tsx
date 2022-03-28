@@ -1,9 +1,10 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../services/hooks";
 import {NavLink, useLocation} from "react-router-dom";
 import styles from './profile.module.css';
 import {ProfileInfo} from '../components/profile-info/profile-info';
 import {logOut} from "../services/actions/auth";
+import {OrderList} from "../components/order/order-list";
 
 export const Profile = () => {
 
@@ -30,6 +31,7 @@ export const Profile = () => {
                 <span>В этом разделе вы можете изменить свои персональные данные</span>
             </div>
             {location.pathname === "/profile" && <ProfileInfo/>}
+            {location.pathname === "/profile/orders" && <OrderList/>}
         </div>
     )
 };

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 import {useHistory} from 'react-router-dom';
 import {useDrop} from "react-dnd";
 import {v4 as uuidv4} from 'uuid';
@@ -17,20 +17,20 @@ import {addingItem} from "../../services/actions/burger-constructor";
 import {
     INIT_NEW_CART,
     ADD_BUNS,
-    REMOVE_BUNS,
-} from "../../services/actions/burger-constructor";
+    REMOVE_BUNS, CLOSE_ORDER,
+} from "../../services/constants";
 
 export default function BurgerConstructor() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const orderIngredients = useSelector((state: any) => state.constructor.ingredients);
-    const count = useSelector((state: any) => state.constructor.count);
+    const orderIngredients = useSelector(state => state.constructor.ingredients);
+    const {count} = useSelector((state) => state.constructor);
     const [modal, setModal] = useState(false);
-    const price = useSelector((state: any) => state.constructor.totalPrice);
-    const bunsArray = useSelector((state: any) => state.constructor.bunsArray);
-    const isBunInOrder = useSelector((state: any) => state.constructor.isBunInOrder);
-    const isLogin = useSelector((state: any) => state.auth.isLogin);
+    const {totalPrice} = useSelector((state) => state.constructor);
+    const {bunsArray} = useSelector((state) => state.constructor);
+    const {isBunInOrder} = useSelector((state) => state.constructor);
+    const {isLogin} = useSelector((state) => state.auth);
 
     const onDropHandler = (itemId:TItem) => {
         if (itemId.type === 'bun') {
@@ -97,7 +97,7 @@ export default function BurgerConstructor() {
                     </div>
                     {isBunInOrder && <BurgerIngredient item={bunsArray[1]} layout='bottom'/>}
                     <div className={burgerConstructorStyles.total + ' mt-10'}>
-                        <span className={burgerConstructorStyles.price + ' mr-10'}>{price}<CurrencyIcon
+                        <span className={burgerConstructorStyles.price + ' mr-10'}>{totalPrice}<CurrencyIcon
                             type="primary"/></span>
                         {isBunInOrder && <Button type="primary" size="medium" onClick={() => {
                             handleOrder();
@@ -111,6 +111,9 @@ export default function BurgerConstructor() {
                         setModal(false);
                         dispatch({
                             type: INIT_NEW_CART,
+                        });
+                        dispatch({
+                            type: CLOSE_ORDER,
                         });
                     }}>
                         <OrderDetails/>

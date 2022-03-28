@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './forgot-password.module.css';
 import {EmailInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {resetPassword} from "../services/actions/auth";
 
 export const ForgotPassword = () => {
@@ -10,8 +10,8 @@ export const ForgotPassword = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
-    const isReset = useSelector((store:any) => store.auth.resetPasswordApproved);
+    const {isLogin} = useSelector(store=> store.auth);
+    const {resetPasswordApproved} = useSelector(store => store.auth);
 
     const reset = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,10 +19,10 @@ export const ForgotPassword = () => {
     };
 
     useEffect(() => {
-        if (isReset) {
+        if (resetPasswordApproved) {
             history.replace({pathname: "/reset-password", state: history.location});
         }
-    }, [email, isReset]);
+    }, [email, resetPasswordApproved]);
 
     if (isLogin) {
         return (

@@ -1,32 +1,57 @@
 import {
     REGISTER_USER,
-    REGISTER_USER_ERROR,
     REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR,
     LOGIN_USER,
-    LOGIN_USER_ERROR,
     LOGIN_USER_SUCCESS,
+    LOGIN_USER_ERROR,
     LOGOUT_USER,
-    LOGOUT_USER_ERROR,
     LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_ERROR,
     REFRESH_TOKEN,
-    REFRESH_TOKEN_ERROR,
     REFRESH_TOKEN_SUCCESS,
+    REFRESH_TOKEN_ERROR,
     RESET_PASSWORD,
-    RESET_PASSWORD_ERROR,
     RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_ERROR,
     UPDATE_PASSWORD,
     UPDATE_PASSWORD_ERROR,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_USER,
-    UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    UPDATE_USER_SUCCESS,
     GET_USER,
     GET_USER_ERROR,
-    GET_USER_SUCCESS
+    GET_USER_SUCCESS,
+
+} from '../constants'
+
+import {
+    TUserActions
 } from '../actions/auth';
 
-const initialState = {
-    user: null,
+type TState = {
+    user: {
+        name: string;
+        email: string;
+    };
+    userDataRequest: boolean;
+    userDataFailed: boolean;
+    resetPasswordRequest: boolean;
+    resetPasswordApproved: boolean;
+    updatePasswordRequest: boolean;
+    updatePasswordApproved: boolean;
+    refreshTokenRequest: boolean;
+    refreshTokenApproved: boolean;
+    updateUserRequest: boolean;
+    updateUserApproved: boolean;
+    isLogin: boolean;
+}
+
+const initialState: TState = {
+    user: {
+        name: '',
+        email: ''},
     userDataRequest: false,
     userDataFailed: false,
     resetPasswordRequest: false,
@@ -40,7 +65,7 @@ const initialState = {
     isLogin: false
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: TUserActions):TState => {
     switch (action.type) {
         case REGISTER_USER: {
             return {
@@ -99,7 +124,9 @@ export const authReducer = (state = initialState, action) => {
         case LOGOUT_USER_SUCCESS: {
             return {
                 ...state,
-                user: {},
+                user: {
+                    name: '',
+                    email: ''},
                 userDataRequest: false,
                 userDataFailed: false,
                 isLogin: false

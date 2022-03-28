@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {useSelector} from 'react-redux';
+import {useSelector} from '../../services/hooks';
 import burgerIngredientsStyle from './burger-ingredients.module.css';
 import TabPoint from "./burger-tab/burger-tab";
 import Ingredient from "./ingredient/ingredient";
@@ -9,7 +9,7 @@ import {TItem, TItemValue} from "../../types";
 
 export default function BurgerIngredients() {
 
-    const {ingredients, ingredientsRequest} = useSelector((state:any) => state.ingredients);
+    const {ingredients, ingredientsRequest} = useSelector(state => state.ingredients);
     const [current, setCurrent] = useState('bun');
 
     const buns = ingredients.filter((item: TItem) => (item.type === 'bun'));

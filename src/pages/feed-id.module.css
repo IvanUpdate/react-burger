@@ -1,0 +1,86 @@
+.main{
+    width: 640px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #F2F2F3;
+}
+
+.number {
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 24px;
+    margin: 0 auto;
+}
+
+.title {
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.status{
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00CCCC;
+}
+
+.contented{
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.scrollArea {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 366px;
+    min-height: 200px;
+    width: 640px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+.scrollArea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date{
+    font-family: 'Jet Brains Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #8585AD;
+}
+
+.amount{
+    display: flex;
+    align-items: center;
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 24px;
+    color: #F2F2F3;
+}

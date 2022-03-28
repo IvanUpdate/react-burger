@@ -1,6 +1,27 @@
-export const SET_INGREDIENT = 'SET_INGREDIENT';
-export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
-export const INIT_INGREDIENT = 'INIT_INGREDIENT';
+import {
+    SET_INGREDIENT,
+    DELETE_INGREDIENT,
+    INIT_INGREDIENT,
+} from "../constants";
+import {TItem} from "../../types";
+
+export interface ISetIngredient {
+    readonly type: typeof SET_INGREDIENT;
+    readonly payload: TItem;
+}
+
+export interface IDeleteIngredient {
+    readonly type: typeof DELETE_INGREDIENT;
+}
+
+export interface IInitIngredient {
+    readonly type: typeof INIT_INGREDIENT;
+}
+
+export type TIngredientAction =
+    ISetIngredient |
+    IDeleteIngredient |
+    IInitIngredient;
 
 export const deleteIngredient = () => {
     return (

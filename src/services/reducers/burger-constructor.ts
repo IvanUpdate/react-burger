@@ -5,9 +5,20 @@ import {
     ADD_BUNS,
     REMOVE_BUNS,
     MOVE_ITEMS
-} from "../actions/burger-constructor";
+} from "../constants";
 
-const initialState = {
+import { TItemActions } from "../actions/burger-constructor";
+import {TItem} from "../../types";
+
+type TState = {
+    ingredients: Array<TItem>;
+    count: number;
+    totalPrice: number;
+    bunsArray: Array<TItem>;
+    isBunInOrder: boolean;
+}
+
+const initialState: TState = {
     ingredients: [],
     count: 0,
     totalPrice: 0,
@@ -15,7 +26,7 @@ const initialState = {
     isBunInOrder: false,
 };
 
-export const constructorReducer = (state = initialState, action) => {
+export const constructorReducer = (state = initialState, action: TItemActions):TState => {
     switch (action.type) {
         case ADD_ITEM:
             return {
@@ -25,7 +36,7 @@ export const constructorReducer = (state = initialState, action) => {
                 totalPrice: state.totalPrice + action.payload.price
             };
         case REMOVE_ITEM:
-            let index = [...state.ingredients].findIndex(element => element._id === action.payload._id);
+            let index = [...state.ingredients].findIndex((element: TItem) => element._id === action.payload._id);
             const newState = [...state.ingredients];
             newState.splice(index, 1);
             return {
@@ -43,7 +54,7 @@ export const constructorReducer = (state = initialState, action) => {
                 isBunInOrder: true,
             };
         case REMOVE_BUNS:
-            const price = [...state.bunsArray].reduce((sum,element)=>(sum+element.price),0);
+            const price = [...state.bunsArray].reduce((sum,element: TItem)=>(sum+element.price),0);
             return {
                 ...state,
                 bunsArray: [],

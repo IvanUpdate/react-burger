@@ -1,0 +1,86 @@
+.main {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.content {
+    margin-top: 100px;
+}
+
+/*.element {
+    width: 620px;
+}*/
+
+.mainTitle {
+    font-family: 'Jet Brains Mono';
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 40px;
+    color: #F2F2F3;
+}
+
+
+.scrollArea {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100vh;
+    min-height: 200px;
+    width: 640px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+.scrollArea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Jet Brains Mono';
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.orderInfo {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 24px;
+    color: #00CCCC;
+    width: 280px;
+}
+
+/*.column {
+    width: 280px;
+}*/
+
+.orderQuantity {
+    font-family: Iceland;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 144px;
+    line-height: 120px;
+}
+.list1{
+    display: flex;
+    gap: 10px;
+}

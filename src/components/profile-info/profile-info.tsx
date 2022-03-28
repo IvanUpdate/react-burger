@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 import styles from './profile-info.module.css';
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {updateUser} from "../../services/actions/auth";
@@ -8,7 +8,7 @@ export const ProfileInfo = () => {
 
     const dispatch = useDispatch();
 
-    const {user} = useSelector((store: any) => store.auth);
+    const {user} = useSelector(store => store.auth);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

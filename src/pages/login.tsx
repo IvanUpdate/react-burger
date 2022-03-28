@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import styles from './login.module.css';
 import {EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../services/hooks";
 import {loginRequest} from "../services/actions/auth";
 import  {History} from 'history';
 
@@ -11,7 +11,7 @@ export const Login = () => {
     const history = useHistory<History & {from: {pathname: string}}>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const isLogin = useSelector((store:any) => store.auth.isLogin);
+    const {isLogin} = useSelector(store => store.auth);
 
     const dispatch = useDispatch();
 

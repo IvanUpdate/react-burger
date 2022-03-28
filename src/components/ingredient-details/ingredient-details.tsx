@@ -1,11 +1,11 @@
 import React from "react"
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/hooks";
 import ingredientStyles from './ingredient.details.module.css';
 
 const IngredientDetails = () => {
-    const item = useSelector((state: any) => state.ingredient.item);
+    const {item} = useSelector(state => state.ingredient);
 
-    return (
+    return (item &&
         <div className={ingredientStyles.main}>
             <img className={ingredientStyles.image} src={item.image} alt=''/>
             <div className={ingredientStyles.name+ ' mt-4'}>{item.name}</div>
