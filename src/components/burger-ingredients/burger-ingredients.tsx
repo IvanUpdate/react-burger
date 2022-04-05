@@ -64,24 +64,24 @@ export default function BurgerIngredients() {
         return <p>Загрузка...</p>
     } else {
         return (
-            <div className={burgerIngredientsStyle.main + ' mr-10'} ref={burgerTopRef}>
+            <div className={burgerIngredientsStyle.main + ' mr-10'} ref={burgerTopRef} data-cy="page">
                 <h1 className={burgerIngredientsStyle.title + ' mt-10 mb-5'}>Соберите бургер</h1>
                 <TabPoint current={current} changeCurrent={changeCurrent}/>
                 <div className={burgerIngredientsStyle.scrollArea} onScroll={handleScroll}>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10 mb-6'} ref={bunsRef}>Булки</h2>
-                    <div className={burgerIngredientsStyle.content}>
+                    <div className={burgerIngredientsStyle.content} data-cy='buns'>
                         {buns.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>)
                         })}
                     </div>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10 mb-6'} ref={saucesRef}>Соусы</h2>
-                    <div className={burgerIngredientsStyle.content}>
+                    <div className={burgerIngredientsStyle.content} data-cy='sauces'>
                         {sauces.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>)
                         })}
                     </div>
                     <h2 className={burgerIngredientsStyle.title2 + ' mt-10'} ref={mainsRef}>Начинки</h2>
-                    <div className={burgerIngredientsStyle.content}>
+                    <div className={burgerIngredientsStyle.content} data-cy='mains'>
                         {mains.map((item:TItem) => {
                             return (<Ingredient item={item} key={item._id}/>);
                         })}

@@ -6,7 +6,7 @@ const IngredientDetails = () => {
     const {item} = useSelector(state => state.ingredient);
 
     return (item &&
-        <div className={ingredientStyles.main}>
+        <div className={ingredientStyles.main} data-cy="details">
             <img className={ingredientStyles.image} src={item.image} alt=''/>
             <div className={ingredientStyles.name+ ' mt-4'}>{item.name}</div>
             <div className={ingredientStyles.ingredients + ' mt-8 mb-15'}>

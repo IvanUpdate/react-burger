@@ -49,7 +49,8 @@ const Ingredient: FC<TItemObject> = ({item}) => {
                   to={{
                       pathname: `/ingredients/${_id}`,
                       state: { background: location }
-                  }} onClick={()=>setElement()}>
+                  }} onClick={()=>setElement()}
+            data-cy="ingredient">
                 <div className={ingredientStyles.counter}><Counter count={qty} size="default"/></div>
                 <img src={image} alt='' className={ingredientStyles.image + ' mr-4 ml-4'}/>
                 <div className={ingredientStyles.currencyBlock + ' pt-1 pb-1'}>

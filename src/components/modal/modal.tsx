@@ -27,10 +27,10 @@ const Modal: FC<IModalProps> = ({closeTheWindow, title, children}) => {
     return ReactDOM.createPortal(
         <>
             <ModalOverlay onClose={closeTheWindow}/>
-            <div className={modalStyles.main}>
+            <div className={modalStyles.main} data-cy="modal">
                 <div className={modalStyles.header + ' mt-10 mr-10 ml-10'}>
                     <div className={modalStyles.title}>{title}</div>
-                    <div onClick={closeTheWindow}><CloseIcon type="primary"/></div>
+                    <div onClick={closeTheWindow} data-cy="close"><CloseIcon type="primary"/></div>
                 </div>
                 <div>
                     {children}

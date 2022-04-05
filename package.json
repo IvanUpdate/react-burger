@@ -56,6 +56,9 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.9"
+    "cypress": "^9.5.3",
+    "fetch-mock": "^9.11.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-mock-store": "^1.5.4"
   }
 }
