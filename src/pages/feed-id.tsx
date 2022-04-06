@@ -15,6 +15,8 @@ export const FeedId = () => {
     const {id} = useParams<{id?:string}>();
     const item = id && orders ? orders.find((el:TOrder) => el._id === id) : null;
     const {ingredients, ingredientsRequest} = useSelector(state=> state.ingredients);
+    const unique: Array<TItem> = [];
+
 
     const count = (ingredient: string, order: TOrder) =>{
         return order.ingredients.filter((element:string) => ingredient === element).length;
@@ -23,7 +25,8 @@ export const FeedId = () => {
 
     const find_ingredient = (ingredient: string, ingr: TItem[]) =>{
         const item = ingr.find((el:TItem)=> el._id === ingredient);
-        if (item) {
+        if (item && !unique.includes(item)) {
+            unique.push(item);
             return item;
         } else {
             return null
@@ -40,6 +43,7 @@ export const FeedId = () => {
                 <div className={styles.contented + ' mt-15'}>Состав:</div>
                 <div className={styles.scrollArea + ' mt-6'}>
                     <div className={styles.gallery}>
+                        {}
                         {item.ingredients.map((element: string) => {
                             return (
                                 <OrderInfo

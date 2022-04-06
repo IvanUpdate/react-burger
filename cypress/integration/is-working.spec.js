@@ -19,12 +19,12 @@ describe('constructor works good', function () {
     describe('app works correctly with routes', function() {
 
         it('should open Конструктор', function() {
-            cy.get('[class^=app-header_nav__1_idE]').contains('Конструктор').click();
+            cy.get('[data-cy=header]').contains('Конструктор').click();
             cy.contains('Соберите бургер');
         });
 
         it('should open Лента заказов', function() {
-            cy.get('[class^=app-header_nav__1_idE]').contains('Лента заказов').click();
+            cy.get('[data-cy=header]').contains('Лента заказов').click();
             cy.contains('Выполнено за все время');
         });
     });

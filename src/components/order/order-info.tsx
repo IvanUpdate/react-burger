@@ -9,6 +9,9 @@ interface IOrderInfoProps {
 }
 
 export const OrderInfo:React.FC<IOrderInfoProps> = ({count, item}) => {
+    if (item === null) {
+        return null;
+    }
     return(
                 <div className={styles.item+' mt-4'}>
                     <div className={styles.main}>

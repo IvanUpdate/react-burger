@@ -6,7 +6,7 @@ import styles from './app-header.module.css'
 function AppHeader() {
     return (
         <header className={styles.header}>
-            <nav className={styles.nav}>
+            <nav className={styles.nav} data-cy="header">
                 <div className={styles.leftButtons}>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
                         <NavLink to='/' exact={true} className={styles.link} activeClassName={styles.linkActive}>
@@ -21,7 +21,9 @@ function AppHeader() {
                         </NavLink>
                     </div>
                 </div>
+                <NavLink to='/' exact={true}>
                 <div className='mr-30 pr-30'><Logo/></div>
+                </NavLink>
                 <div>
                     <div className="mt-4 mb-4 pr-5 pl-5 mr-1 ml-1">
                         <NavLink to='/profile' exact={true} className={styles.link} activeClassName={styles.linkActive}>
