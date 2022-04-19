@@ -79,12 +79,12 @@ export default function BurgerConstructor() {
     };
 
     if (!count) {
-        return (<h1 ref={dropTargetFirst} className={burgerConstructorStyles.header}>Начните перетаскивать ингредиенты
+        return (<h1 data-cy="dropTarget" ref={dropTargetFirst} className={burgerConstructorStyles.header}>Начните перетаскивать ингредиенты
             сюда</h1>);
     } else {
         return (
             <>
-                <div className={burgerConstructorStyles.main + ' pt-25'} ref={dropTarget}>
+                <div className={burgerConstructorStyles.main + ' pt-25'} ref={dropTarget} data-cy="dropTarget">
                     {isBunInOrder && <BurgerIngredient item={bunsArray[0]} layout='top'/>}
                     <div className={burgerConstructorStyles.scrollArea} ref={drop}>
                         {orderIngredients && orderIngredients.map((item:TItem, index:number) => {
